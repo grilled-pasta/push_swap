@@ -6,72 +6,59 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/10/24 21:21:02 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/10/31 01:42:53 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include <stdlib.h> 
-
-void	swap(int *arr, int size)
-{
-	int	temp;
-
-	temp = arr[0];
-	arr[0] = arr[size - 1];
-	arr[size - 1] = temp;
-}
-
-void	swap_a(int *a, int size)
-{
-	swap(a, size);
-}
-
-void	swap_b(int *b, int size)
-{
-	swap(b, size);
-}
-
-void	swap_s(int *a, int *b, int size)
-{
-	swap(a, size);
-	swap(b, size);
-}
-
 #include <stdio.h>
 
-float	compute_disorder(int *a, int size)
+float	compute_disorder(stack *s, int size)
 {
 	int mistakes = 0;
 	int	total_pairs = 0;
 	int	i = 0;
 	int	j;
 
-	while (i < size - 1)
+	while (s && i < size - 1)
 	{
 		j = 1;
 		while (j + i < size - 1)
 		{
 			total_pairs += 1;
-			if (a[i] > a[j + i])
+			printf("\ni=%d)s->number=%d, element(s, %d)=%d\n", i, s->number, i + j, element(s, i+j)->number);
+			if (s->number > element(s, i + j)->number)
+			{
 				mistakes += 1;
+			}
 			j++;
 		}
 		i++;
+		s = s->next;
 	}
 	return (mistakes / (float) total_pairs);
 }
 
-#include <stdio.h>
-
 int	main(int argc, char **argv)
 {
-	int	*a = malloc(sizeof(int) * (argc - 1));
+	stack 	*s;
+	stack	*temp;
+	
+	s = NULL;
 	int i = 1;
 	while (i < argc)
 	{
-		a[i - 1] = atoi(argv[i]);
+		temp = new(atoi(argv[i]));
+		add_back(&s, temp);
 		i++;
 	}
-	int	*b = malloc(sizeof(int) * (argc - 1));
-	printf("compute_disorder: %f", compute_disorder(a, argc - 1));
+	// while (s && s->next)
+	// {
+	// 	printf("%d\t", s->number);
+	// 	s = s->next;
+	// }		
+	// printf("%d\t", s->number);
+	printf("\nsize: %d\n", size(s));
+	printf("\ncompute_disorder: %f", compute_disorder(s, size(s)));
 }
