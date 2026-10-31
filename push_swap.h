@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/10/31 01:38:22 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 00:29:32 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,19 @@ void	add_back(stack **s, stack *s_new);
 stack	*last(stack *s);
 int		size(stack *s);
 stack	*element(stack *s, int index);
+void	iter(stack *s, void (*f)(int number));
 
 // operations
-void	sa(int *a, int size);
-void	sb(int *b, int size);
-void	ss(int *a, int *b, int size);
+void	sa(stack **a);
+void	sb(stack **b);
+void	ss(stack **a, stack **b);
+void	pa(stack **a, stack **b);
+void	pb(stack **a, stack **b);
+void	ra(stack **a);
+void	rb(stack **b);
+void	rr(stack **a, stack **b);
+void	rra(stack **a);
+void	rrb(stack **b);
+void	rrr(stack **a, stack **b);
 
 #endif

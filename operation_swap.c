@@ -6,31 +6,39 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 21:22:10 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/10/31 00:34:03 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/10/31 19:15:56 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static void	swap(int *arr, int size)
-{
-	int	temp;
+#include "push_swap.h"
 
-	temp = arr[0];
-	arr[0] = arr[size - 1];
-	arr[size - 1] = temp;
+static void	swap(stack **s)
+{
+	stack	*s1;
+	stack	*s2;
+
+	if (!s || !*s || !(*s)->next)
+		return ;
+	s1 = *s;
+	s2 = s1->next;
+
+	s1->next = s2->next;
+	s2->next = s1;
+	*s = s2;
 }
 
-void	sa(int *a, int size)
+void	sa(stack **a)
 {
-	swap(a, size);
+	swap(a);
 }
 
-void	sb(int *b, int size)
+void	sb(stack **b)
 {
-	swap(b, size);
+	swap(b);
 }
 
-void	ss(int *a, int *b, int size)
+void	ss(stack **a, stack **b)
 {
-	swap(a, size);
-	swap(b, size);
+	swap(a);
+	swap(b);
 }

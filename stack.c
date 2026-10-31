@@ -35,13 +35,13 @@ void	add_back(stack **s, stack *s_new)
 {
 	stack	*last_s;
 	
-	if (!*s)
+	if (*s)
 	{
-		*s = s_new;
-		return ;
+		last_s = last(*s);
+		last_s->next = s_new;
 	}
-	last_s = last(*s);
-	last_s->next = s_new;
+	else
+		*s = s_new;
 }
 
 stack	*last(stack *s)
@@ -55,9 +55,11 @@ stack	*element(stack *s, int index)
 {
 	int	i;
 
-	i = 0;
-	while (s && i < index)
+	i = 1;
+	while (i < index)
 	{
+		if (!s)
+			return (NULL);
 		s = s->next;
 		i++;
 	}
@@ -75,4 +77,13 @@ int		size(stack *s)
 		size++;
 	}
 	return (size);
+}
+
+void	iter(stack *s, void (*f)(int))
+{
+	while (s)
+	{
+		f(s->number);
+		s = s->next;
+	}
 }
