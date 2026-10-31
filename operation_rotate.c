@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 00:11:39 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 00:22:18 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 00:35:47 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	rotate(stack **s)
 {
 	stack	*temp;
 
+	if (!s || !*s || !(*s)->next)
+		return ;
 	temp = *s;
 	last(*s)->next = *s;
 	*s = temp->next;

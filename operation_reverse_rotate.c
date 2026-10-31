@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 00:23:24 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 00:29:30 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 00:35:34 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	reverse_rotate(stack **s)
 	stack	*s_temp; // second to last
 	stack	*s_last;
 
+	if (!s || !*s || !(*s)->next)
+		return ;
 	s_temp = *s;
 	while (s_temp->next->next != NULL)
 		s_temp = s_temp->next;
