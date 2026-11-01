@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 00:59:35 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 01:30:18 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ stack	*last(stack *s);
 int		size(stack *s);
 stack	*element(stack *s, int index);
 void	iter(stack *s, void (*f)(int number));
+void	clear(stack *s);
 
 // operations
 void	sa(stack **a);

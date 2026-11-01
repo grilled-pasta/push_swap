@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:30:21 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 01:36:36 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@ static void	putnbr(int number)
 	printf("%d\t", number);
 }
 
+static int	is_unique(stack *s, int number)
+{
+	while (s)
+	{
+		if (s->number == number)
+			return (0);
+		s = s->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	stack 	*a;
@@ -54,6 +65,8 @@ int	main(int argc, char **argv)
 	while (i < argc)
 	{
 		temp = new(atoi(argv[i]));
+		if (!is_unique(a, temp->number))
+			return (clear(a), clear(b), free(temp), -1);
 		add_back(&a, temp);
 		i++;
 	}
@@ -82,6 +95,5 @@ int	main(int argc, char **argv)
 	// printf("\nStack A:\n");
 	// iter(a, putnbr);
 	// printf("\ncompute_disorder: %f", compute_disorder(a, size(a)));
-	clear(a);
-	clear(b);
+	return (clear(a), clear(b), free(temp), 0);
 }
