@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_selection.c                                   :+:      :+:    :+:   */
+/*   selection.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 00:58:51 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:26:50 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 02:04:32 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		stack_min(stack **s)
+static int		stack_min(stack **s)
 {
 	stack	*temp;
 	int		min;
@@ -30,10 +30,9 @@ int		stack_min(stack **s)
 	return (min);
 }
 
-void	sort_selection(stack **a, stack **b)
+void	sort_simple_selection(stack **a, stack **b)
 {
 	int		min;
-	int		i;
 
 	if (!a || !*a)
 		return ;

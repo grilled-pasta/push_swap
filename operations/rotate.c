@@ -1,44 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_swap.c                                   :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/24 21:22:10 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/10/31 19:15:56 by alkonsta         ###   ########.fr       */
+/*   Created: 2026/11/01 00:11:39 by alkonsta          #+#    #+#             */
+/*   Updated: 2026/11/01 01:58:09 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(stack **s)
+static void	rotate(stack **s)
 {
-	stack	*s1;
-	stack	*s2;
+	stack	*temp;
 
 	if (!s || !*s || !(*s)->next)
 		return ;
-	s1 = *s;
-	s2 = s1->next;
-
-	s1->next = s2->next;
-	s2->next = s1;
-	*s = s2;
+	temp = *s;
+	last(*s)->next = *s;
+	*s = temp->next;
+	temp->next = NULL;
 }
 
-void	sa(stack **a)
+void	ra(stack **a)
 {
-	swap(a);
+	rotate(a);
 }
 
-void	sb(stack **b)
+void	rb(stack **b)
 {
-	swap(b);
+	rotate(b);
 }
 
-void	ss(stack **a, stack **b)
+void	rr(stack **a, stack **b)
 {
-	swap(a);
-	swap(b);
+	rotate(a);
+	rotate(b);
 }

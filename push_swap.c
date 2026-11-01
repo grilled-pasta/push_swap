@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:50:29 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 02:04:57 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 	iter(a, putnbr);
 	disorder = compute_disorder(a);
 	printf("\ndisorder = %f\n\n", disorder);
-	sort_selection(&a, &b);
+	sort_simple_selection(&a, &b);
 	// printf("\nSORTED:\n");
 	// iter(a, putnbr);
 

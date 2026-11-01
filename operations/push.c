@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_rotate.c                                 :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/01 00:11:39 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 00:35:47 by alkonsta         ###   ########.fr       */
+/*   Created: 2026/10/31 18:33:36 by alkonsta          #+#    #+#             */
+/*   Updated: 2026/11/01 01:57:02 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate(stack **s)
+static void	push(stack **s1, stack **s2)
 {
 	stack	*temp;
 
-	if (!s || !*s || !(*s)->next)
+	if (!s2 || !*s2)
 		return ;
-	temp = *s;
-	last(*s)->next = *s;
-	*s = temp->next;
+	temp = *s2;
+	*s2 = (*s2)->next;
 	temp->next = NULL;
+	add_front(s1, temp);
 }
 
-void	ra(stack **a)
+void	pa(stack **a, stack **b)
 {
-	rotate(a);
+	push(a, b);
 }
 
-void	rb(stack **b)
+void	pb(stack **a, stack **b)
 {
-	rotate(b);
+	push(b, a);
 }
 
-void	rr(stack **a, stack **b)
-{
-	rotate(a);
-	rotate(b);
-}

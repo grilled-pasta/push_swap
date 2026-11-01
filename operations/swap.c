@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_push.c                                   :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/31 18:33:36 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/10/31 18:40:17 by alkonsta         ###   ########.fr       */
+/*   Created: 2026/10/24 21:22:10 by alkonsta          #+#    #+#             */
+/*   Updated: 2026/11/01 01:57:32 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(stack **s1, stack **s2)
+static void	swap(stack **s)
 {
-	stack	*temp;
+	stack	*s1;
+	stack	*s2;
 
-	if (!s2 || !*s2)
+	if (!s || !*s || !(*s)->next)
 		return ;
-	temp = *s2;
-	*s2 = (*s2)->next;
-	temp->next = NULL;
-	add_front(s1, temp);
+	s1 = *s;
+	s2 = s1->next;
+
+	s1->next = s2->next;
+	s2->next = s1;
+	*s = s2;
 }
 
-void	pa(stack **a, stack **b)
+void	sa(stack **a)
 {
-	push(a, b);
+	swap(a);
 }
 
-void	pb(stack **a, stack **b)
+void	sb(stack **b)
 {
-	push(b, a);
+	swap(b);
 }
 
+void	ss(stack **a, stack **b)
+{
+	swap(a);
+	swap(b);
+}
