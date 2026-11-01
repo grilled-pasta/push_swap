@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 00:29:32 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 00:59:35 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ void	rr(stack **a, stack **b);
 void	rra(stack **a);
 void	rrb(stack **b);
 void	rrr(stack **a, stack **b);
+
+// sortin algorithms
+void	sort_selection(stack **a, stack **b);
 
 #endif

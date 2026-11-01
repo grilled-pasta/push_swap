@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 00:32:13 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 01:23:46 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,29 @@ int	main(int argc, char **argv)
 		add_back(&a, temp);
 		i++;
 	}
-	ss(&a, &b);
-	pb(&a, &b);
-	pb(&a, &b);
-	pb(&a, &b);
-	pb(&a, &b);
-	pa(&a, &b);	
-	printf("\nStack A:\n");
-	iter(a, putnbr);
-	printf("\nStack B:\n");
-	iter(b, putnbr);
-	rrr(&a, &b);
-	printf("\nStack A:\n");
-	iter(a, putnbr);
-	printf("\nStack B:\n");
-	iter(b, putnbr);
-	rra(&a);	
-	printf("\nStack A:\n");
-	iter(a, putnbr);
-	printf("\ncompute_disorder: %f", compute_disorder(a, size(a)));
+	// iter(a, putnbr);
+	sort_selection(&a, &b);
+	// printf("\nSORTED:\n");
+	// iter(a, putnbr);
+
+	// iter(b, putnbr);
+	// ss(&a, &b);
+	// pb(&a, &b);
+	// pb(&a, &b);
+	// pb(&a, &b);
+	// pb(&a, &b);
+	// pa(&a, &b);	
+	// printf("\nStack A:\n");
+	// iter(a, putnbr);
+	// printf("\nStack B:\n");
+	// iter(b, putnbr);
+	// rrr(&a, &b);
+	// printf("\nStack A:\n");
+	// iter(a, putnbr);
+	// printf("\nStack B:\n");
+	// iter(b, putnbr);
+	// rra(&a);	
+	// printf("\nStack A:\n");
+	// iter(a, putnbr);
+	// printf("\ncompute_disorder: %f", compute_disorder(a, size(a)));
 }
