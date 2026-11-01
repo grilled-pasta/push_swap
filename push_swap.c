@@ -6,32 +6,31 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:36:36 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 01:50:29 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-float	compute_disorder(stack *s, int size)
+float	compute_disorder(stack *s)
 {
-	int mistakes = 0;
-	int	total_pairs = 0;
-	int	i;
-	int	j;
+	int		mistakes;
+	int		total_pairs;
+	stack	*temp;
 
-	i = 0;
-	while (i < size - 1)
+	mistakes = 0;
+	total_pairs = 0;
+	while (s && s->next)
 	{
-		j = 1;
-		while (j + i < size)
+		temp = s->next;
+		while (temp)
 		{
 			total_pairs += 1;
-			if (s->number > element(s, i + j)->number)
+			if (s->number > temp->number)
 				mistakes += 1;
-			j++;
+			temp = temp->next;
 		}
-		i++;
 		s = s->next;
 	}
 	return (mistakes / (float) total_pairs);
@@ -58,6 +57,7 @@ int	main(int argc, char **argv)
 	stack 	*a;
 	stack	*b;
 	stack	*temp;
+	float	disorder;
 	
 	a = NULL;
 	b = NULL;
@@ -70,7 +70,9 @@ int	main(int argc, char **argv)
 		add_back(&a, temp);
 		i++;
 	}
-	// iter(a, putnbr);
+	iter(a, putnbr);
+	disorder = compute_disorder(a);
+	printf("\ndisorder = %f\n\n", disorder);
 	sort_selection(&a, &b);
 	// printf("\nSORTED:\n");
 	// iter(a, putnbr);
@@ -95,5 +97,5 @@ int	main(int argc, char **argv)
 	// printf("\nStack A:\n");
 	// iter(a, putnbr);
 	// printf("\ncompute_disorder: %f", compute_disorder(a, size(a)));
-	return (clear(a), clear(b), free(temp), 0);
+	return (clear(a), clear(b), 0);
 }
