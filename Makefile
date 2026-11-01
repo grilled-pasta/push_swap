@@ -6,7 +6,7 @@
 #    By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/01 01:55:11 by alkonsta          #+#    #+#              #
-#    Updated: 2026/11/01 02:04:13 by alkonsta         ###   ########.fr        #
+#    Updated: 2026/11/01 02:34:57 by alkonsta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJS)
 clean:
 	rm -f $(OBJS)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
 .PHONY: all clean fclean

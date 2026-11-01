@@ -6,12 +6,13 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 02:04:57 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 02:37:26 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+#include <string.h>
 
 float	compute_disorder(stack *s)
 {
@@ -52,28 +53,45 @@ static int	is_unique(stack *s, int number)
 	return (1);
 }
 
+static int	is_strategy(char *arg)
+{
+	return (strcmp(arg, "--simple") == 0);
+}
+
 int	main(int argc, char **argv)
 {
 	stack 	*a;
 	stack	*b;
 	stack	*temp;
 	float	disorder;
+	char	*strategy;
 	
 	a = NULL;
 	b = NULL;
+	strategy = "adaptive";
 	int i = 1;
+	if (is_strategy(argv[i]))
+	{
+		strategy = argv[i] + 2;
+		printf("strategy: %s\n", strategy);
+		i++;
+	}
 	while (i < argc)
 	{
 		temp = new(atoi(argv[i]));
-		if (!is_unique(a, temp->number))
-			return (clear(a), clear(b), free(temp), -1);
+		if ((strcmp(argv[i], "0") != 0 && temp->number == 0) 
+				|| !is_unique(a, temp->number))
+			return (clear(a), clear(b), free(temp), printf("Error\n"), -1);
 		add_back(&a, temp);
 		i++;
 	}
 	iter(a, putnbr);
 	disorder = compute_disorder(a);
-	printf("\ndisorder = %f\n\n", disorder);
-	sort_simple_selection(&a, &b);
+	printf("\ndisorder = %.2f\n\n", disorder);
+	if (strcmp(strategy, "simple") == 0 || strcmp(strategy, "adaptive"))
+		sort_simple_selection(&a, &b);
+	printf("\n\n");
+	iter(a, putnbr);
 	// printf("\nSORTED:\n");
 	// iter(a, putnbr);
 
