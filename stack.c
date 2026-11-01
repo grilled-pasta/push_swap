@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:39:59 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/10/31 01:40:01 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 01:30:27 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,17 @@ void	iter(stack *s, void (*f)(int))
 		f(s->number);
 		s = s->next;
 	}
+}
+
+void	clear(stack *s)
+{
+	stack	*temp;
+
+	while (s)
+	{
+		temp = s;
+		s = s->next;
+		free(temp);
+	}
+	free(s);
 }

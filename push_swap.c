@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:23:46 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/01 01:30:21 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,6 @@ int	main(int argc, char **argv)
 	// printf("\nStack A:\n");
 	// iter(a, putnbr);
 	// printf("\ncompute_disorder: %f", compute_disorder(a, size(a)));
+	clear(a);
+	clear(b);
 }
