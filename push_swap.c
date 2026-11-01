@@ -88,8 +88,8 @@ int	main(int argc, char **argv)
 	iter(a, putnbr);
 	disorder = compute_disorder(a);
 	printf("\ndisorder = %.2f\n\n", disorder);
-	// if (strcmp(strategy, "simple") == 0 || strcmp(strategy, "adaptive"))
-	sort_simple_selection(&a, &b);
+	if (strcmp(strategy, "simple") == 0 || strcmp(strategy, "adaptive") == 0)
+		sort_simple_selection(&a, &b);
 	printf("\n\n");
 	iter(a, putnbr);
 	// printf("\nSORTED:\n");
