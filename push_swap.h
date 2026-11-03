@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 02:29:38 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/02 05:36:34 by alla             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 
-typedef	struct s_stack
+typedef	struct	s_stack
 {
 	int				number;
 	struct s_stack	*next;
 }				stack;
+
+typedef struct	s_args
+{
+	char	*strategy;
+	stack	*stack;
+	float	disorder;
+}				args;
 
 // stack
 stack	*new(int number);
@@ -31,7 +39,10 @@ int		size(stack *s);
 stack	*element(stack *s, int index);
 void	iter(stack *s, void (*f)(int number));
 void	clear(stack *s);
-
+// utils
+float	compute_disorder(stack *s);
+// parser
+args	*parse_args(int argc, char **argv);
 // operations
 void	sa(stack **a);
 void	sb(stack **b);

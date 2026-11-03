@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:39:59 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:30:27 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/03 17:49:32 by alla             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,59 +44,3 @@ void	add_back(stack **s, stack *s_new)
 		*s = s_new;
 }
 
-stack	*last(stack *s)
-{
-	while (s && s->next)
-		s = s->next;
-	return (s);
-}
-
-stack	*element(stack *s, int index)
-{
-	int	i;
-
-	i = 1;
-	while (i < index)
-	{
-		if (!s)
-			return (NULL);
-		s = s->next;
-		i++;
-	}
-	return (s);
-}
-
-int		size(stack *s)
-{
-	int	size;
-
-	size = 0;
-	while (s)
-	{
-		s = s->next;
-		size++;
-	}
-	return (size);
-}
-
-void	iter(stack *s, void (*f)(int))
-{
-	while (s)
-	{
-		f(s->number);
-		s = s->next;
-	}
-}
-
-void	clear(stack *s)
-{
-	stack	*temp;
-
-	while (s)
-	{
-		temp = s;
-		s = s->next;
-		free(temp);
-	}
-	free(s);
-}

@@ -6,7 +6,7 @@
 #    By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/01 01:55:11 by alkonsta          #+#    #+#              #
-#    Updated: 2026/11/01 02:34:57 by alkonsta         ###   ########.fr        #
+#    Updated: 2026/11/02 05:47:34 by alla             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,13 @@ CPPFLAGS = -I.
 
 SRCS = push_swap.c \
        stack.c \
+       stack_utils.c \
        operations/push.c \
        operations/swap.c \
        operations/rotate.c \
        operations/reverse_rotate.c \
-       sorters/simple/selection.c
+       sorters/simple/selection.c \
+       parser/parse.c
 
 OBJS = $(SRCS:.c=.o)
 
