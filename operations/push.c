@@ -27,10 +27,12 @@ static void	push(stack **s1, stack **s2)
 void	pa(stack **a, stack **b)
 {
 	push(a, b);
+	printf("pa\n");
 }
 
 void	pb(stack **a, stack **b)
 {
 	push(b, a);
+	printf("pb\n");
 }
 

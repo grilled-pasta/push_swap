@@ -30,15 +30,18 @@ static void	swap(stack **s)
 void	sa(stack **a)
 {
 	swap(a);
+	printf("sa\n");
 }
 
 void	sb(stack **b)
 {
 	swap(b);
+	printf("sb\n");
 }
 
 void	ss(stack **a, stack **b)
 {
 	swap(a);
 	swap(b);
+	printf("ss\n");
 }

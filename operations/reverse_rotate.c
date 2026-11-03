@@ -14,7 +14,7 @@
 
 static void	reverse_rotate(stack **s)
 {
-	stack	*s_temp; // second to last
+	stack	*s_temp;
 	stack	*s_last;
 
 	if (!s || !*s || !(*s)->next)
@@ -32,15 +32,18 @@ static void	reverse_rotate(stack **s)
 void	rra(stack **a)
 {
 	reverse_rotate(a);
+	printf("rra\n");
 }
 
 void	rrb(stack **b)
 {
 	reverse_rotate(b);
+	printf("rrb\n");
 }
 
 void	rrr(stack **a, stack **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
+	printf("rrr\n");
 }

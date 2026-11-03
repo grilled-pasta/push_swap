@@ -4,3 +4,5 @@ push_swap
 # Object files
 *.o
 
+# Bear
+compile_commands.json

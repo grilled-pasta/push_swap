@@ -35,21 +35,15 @@ void	sort_simple_selection(stack **a, stack **b)
 	int		min;
 
 	if (!a || !*a)
-		return ;
+		return ;		
+				
 	while (*a && (*a)->next)
 	{
 		min = stack_min(a);
 		while ((*a)->number != min)
-		{
-			printf("ra\n");
 			ra(a);
-		}
-		printf("pb\n");
-		pb(a, b);
+		pb(a, b);			
 	}
 	while (*b)
-	{
-		printf("pa\n");
 		pa(a, b);
-	}
 }

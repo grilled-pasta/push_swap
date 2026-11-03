@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	stack	*temp;
 
 	args = parse_args(argc, argv);
-	temp = malloc(sizeof(stack));
+	temp = NULL;
 	iter(args->stack, putnbr);
 	printf("\ndisorder = %.2f\n\n", args->disorder);
 	if (strcmp(args->strategy, "simple") == 0
