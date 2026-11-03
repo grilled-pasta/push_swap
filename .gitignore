@@ -1,0 +1,6 @@
+# Compiled executable
+push_swap
+
+# Object files
+*.o
+
