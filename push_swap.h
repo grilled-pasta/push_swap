@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/05 15:26:55 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/06 18:48:05 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef struct	s_args
 	stack	*stack;
 	float	disorder;
 }				args;
+
+typedef struct s_chunk
+{
+	int	size;
+	int	index;
+	int	remaining;
+}	t_chunk;
 
 // stack
 stack	*new(int number);
