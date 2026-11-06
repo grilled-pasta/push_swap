@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void ft_ranking(stack **a)
+static void ft_ranking(stack **a)
 {
 	stack *current;
 	stack *temp;
@@ -34,35 +34,37 @@ void ft_ranking(stack **a)
 		temp = *a;
 	}
 }
-int bin_checker(stack **a, stack **b, int size, int bit)
+int bin_checker(stack **a, stack **b, int bit, stack **operations)
 {
 	int i;
 	int to_b;
+	int	size;
 
 	i = 0;
 	to_b = 0;
+	size = ft_lstsize(*a);
 	while(i < size)
 	{
 		if((*a)->rank >> bit & 1)
-			ra(a);
+			rotate_a(a, operations);
 		else
 		{
-			pb(a, b);
+			push_b(a, b, operations);
 			to_b++;
 		}
 		i++;
 	}
 	return(to_b);
 }
-void complex_b_to_a(stack **a, stack **b, int to_b)
+void complex_b_to_a(stack **a, stack **b, int to_b, stack **operations)
 {
 	while (to_b > 0)
 	{
-		pa(a, b);
+		push_a(a, b, operations);
 		to_b--;
 	}
 }
-int complex(stack **a, stack **b)
+int complex(stack **a, stack **b, stack **operations)
 {
 	int size;
 	int bit;
@@ -82,8 +84,8 @@ int complex(stack **a, stack **b)
 	}
 	while(bit < max_bits)
 	{
-		moved = bin_checker(a, b, size, bit);	
-		complex_b_to_a(a, b, moved);
+		moved = bin_checker(a, b, bit, operations);	
+		complex_b_to_a(a, b, moved, operations);
 		bit++;
 	}
 	return(1);

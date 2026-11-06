@@ -24,15 +24,15 @@ static void	push(stack **s1, stack **s2)
 	add_front(s1, temp);
 }
 
-void	pa(stack **a, stack **b)
+void	push_a(stack **a, stack **b, stack **operations)
 {
 	push(a, b);
-	printf("pa\n");
+	add_back(operations, new(pa));
 }
 
-void	pb(stack **a, stack **b)
+void	push_b(stack **a, stack **b, stack **operations)
 {
 	push(b, a);
-	printf("pb\n");
+	add_back(operations, new(pb));
 }
 

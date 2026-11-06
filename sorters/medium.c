@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 // calculates the ranking of each number on A
-void ft_ranking(stack **a)
+static void ft_ranking(stack **a)
 {
 	stack *current;
 	stack *temp;
@@ -26,9 +26,7 @@ void ft_ranking(stack **a)
 		while (temp)
 		{
 			if (current->number > temp->number)
-			{
 				current->rank++;
-			}
 			temp = temp->next;
 		}
 		current = current->next;
@@ -55,7 +53,8 @@ double ft_sqrt(double n)
     return (x);
 }
 //sends the organized chunks with unorganized values from A to B
-void a_to_b(stack **a, stack **b, int chunk_size, int chunks)
+void a_to_b(stack **a, stack **b, int chunk_size, int chunks, 
+		stack **operations)
 {
 	int temp;
 	int i;
@@ -72,11 +71,11 @@ void a_to_b(stack **a, stack **b, int chunk_size, int chunks)
 		{
 			if ((*a)->rank >= temp*i && (*a)->rank < (i+1)*temp)
 			{
-				pb(a, b);
+				push_b(a, b, operations);
 				chunk_size--;
 			}
 			else
-				ra(a);
+				rotate_a(a, operations);
 		}
 		chunk_size = temp;
 		i++;
@@ -114,7 +113,7 @@ int ft_find_max(stack *b, int chunk_size)
 }
 
 //checks the top chunk on stack B and sends it back to stack A in order
-void b_to_a(stack **a, stack **b, int chunk_size)
+void b_to_a(stack **a, stack **b, int chunk_size, stack **operations)
 {
 	int maxpos;
 	int i;
@@ -127,33 +126,34 @@ void b_to_a(stack **a, stack **b, int chunk_size)
 			return;
 		while (maxpos > i)
 		{
-			rb(b);
+			rotate_b(b, operations);
 			i++;
 		}
-		pa(a, b);
+		push_a(a, b, operations);
 		while (i > 0)
 		{
-			rrb(b);
+			reverse_rotate_b(b, operations);
 			i--;
 		}
 		chunk_size--;
 	}
 }
 //repeats b_to_a for each chunk
-void ft_chunks(stack **a, stack **b, int chunk_size, int chunks)
+void ft_chunks(stack **a, stack **b, int chunk_size, int chunks, 
+		stack **operations)
 {
 	int size;
 
 	size = ft_lstsize(*b);
-	b_to_a(a, b, size - (chunk_size * (chunks-1)));
+	b_to_a(a, b, size - (chunk_size * (chunks-1)), operations);
 	chunks--;
 	while (chunks > 0)
 	{
-		b_to_a(a, b, chunk_size);
+		b_to_a(a, b, chunk_size, operations);
 		chunks--;
 	}
 }
-int medium(stack **a, stack **b)
+int medium(stack **a, stack **b, stack **operations)
 {
 	int size;
 	int chunk_size;
@@ -162,12 +162,12 @@ int medium(stack **a, stack **b)
 	size = ft_lstsize(*a);
 	if (size == 0)
 		return(1);
-	chunk_size = (int)ft_sqrt(size);
+	chunk_size = (int) ft_sqrt(size);
 	if (chunk_size * chunk_size < size)
     	chunk_size++;
 	chunks = (size + chunk_size - 1) / chunk_size;
 	ft_ranking(a);
-	a_to_b(a, b, chunk_size, chunks);
-	ft_chunks(a, b, chunk_size, chunks);
+	a_to_b(a, b, chunk_size, chunks, operations);
+	ft_chunks(a, b, chunk_size, chunks, operations);
 	return(1);
 }

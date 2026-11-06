@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include <stdio.h>
+#include "push_swap.h"
 
 float	compute_disorder(stack *s)
 {
@@ -49,7 +48,8 @@ static int	is_unique(stack *s, int number)
 
 static int	is_strategy(char *arg)
 {
-	return (strcmp(arg, "--simple") == 0);
+	return (strcmp(arg, "--adaptive") == 0 || strcmp(arg, "--simple") == 0 
+			|| strcmp(arg, "--medium") == 0 || strcmp(arg, "--complex") == 0);
 }
 
 args	*parse_args(int argc, char **argv)
@@ -65,12 +65,13 @@ args	*parse_args(int argc, char **argv)
 	if (!args_parsed)
 		return (NULL);
 	args_parsed->strategy = "adaptive";
-	if (is_strategy(argv[i]))
+	if (strncmp(argv[i], "--", 2) == 0 && is_strategy(argv[i]))
 	{
 		args_parsed->strategy = argv[i] + 2;
-		printf("strategy: %s\n", args_parsed->strategy);
 		i++;
 	}
+	else if (strncmp(argv[i], "--", 2) == 0) 
+		return (clear(s), printf("Error\n"), NULL);
 	while (i < argc)
 	{
 		temp = new(atoi(argv[i]));

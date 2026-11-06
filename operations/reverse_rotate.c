@@ -29,21 +29,21 @@ static void	reverse_rotate(stack **s)
 	*s = s_last;
 }
 
-void	rra(stack **a)
+void	reverse_rotate_a(stack **a, stack **operations)
 {
 	reverse_rotate(a);
-	printf("rra\n");
+	add_back(operations, new(rra));
 }
 
-void	rrb(stack **b)
+void	reverse_rotate_b(stack **b, stack **operations)
 {
 	reverse_rotate(b);
-	printf("rrb\n");
+	add_back(operations, new(rra));
 }
 
-void	rrr(stack **a, stack **b)
+void	reverse_rotate_ab(stack **a, stack **b, stack **operations)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	printf("rrr\n");
+	add_back(operations, new(rra));
 }

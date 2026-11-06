@@ -23,8 +23,10 @@ SRCS = push_swap.c \
        operations/swap.c \
        operations/rotate.c \
        operations/reverse_rotate.c \
-       sorters/simple/selection.c \
-       parser/parse.c
+       sorters/simple.c \
+       sorters/medium.c \
+       sorters/complex.c \
+       parser.c
 
 OBJS = $(SRCS:.c=.o)
 

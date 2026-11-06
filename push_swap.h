@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <string.h>
 
+enum Operation {sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr};
+
 typedef	struct	s_stack
 {
 	int				number;
@@ -36,7 +38,7 @@ stack	*new(int number);
 void	add_front(stack **s, stack *s_new);
 void	add_back(stack **s, stack *s_new);
 stack	*last(stack *s);
-int		size(stack *s);
+int		ft_lstsize(stack *s);
 stack	*element(stack *s, int index);
 void	iter(stack *s, void (*f)(int number));
 void	clear(stack *s);
@@ -45,19 +47,21 @@ float	compute_disorder(stack *s);
 // parser
 args	*parse_args(int argc, char **argv);
 // operations
-void	sa(stack **a);
-void	sb(stack **b);
-void	ss(stack **a, stack **b);
-void	pa(stack **a, stack **b);
-void	pb(stack **a, stack **b);
-void	ra(stack **a);
-void	rb(stack **b);
-void	rr(stack **a, stack **b);
-void	rra(stack **a);
-void	rrb(stack **b);
-void	rrr(stack **a, stack **b);
+void	swap_a(stack **a, stack **operations);
+void	swap_b(stack **b, stack **operations);
+void	swap_ab(stack **a, stack **b, stack **operations);
+void	push_a(stack **a, stack **b, stack **operations);
+void	push_b(stack **a, stack **b, stack **operations);
+void	rotate_a(stack **a, stack **operations);
+void	rotate_b(stack **b, stack **operations);
+void	rotate_ab(stack **a, stack **b, stack **operations);
+void	reverse_rotate_a(stack **a, stack **operations);
+void	reverse_rotate_b(stack **b, stack **operations);
+void	reverse_rotate_ab(stack **a, stack **b, stack **operations);
 
 // sorting algorithms
-void	sort_simple_selection(stack **a, stack **b);
+void	simple(stack **a, stack **b, stack **operations);
+int 	medium(stack **a, stack **b, stack **operations);
+int 	complex(stack **a, stack **b, stack **operations);
 
 #endif

@@ -44,3 +44,15 @@ void	add_back(stack **s, stack *s_new)
 		*s = s_new;
 }
 
+int		ft_lstsize(stack *s)
+{
+	int	size;
+
+	size = 0;
+	while (s)
+	{
+		size++;
+		s=s->next;
+	}
+	return (size);
+}

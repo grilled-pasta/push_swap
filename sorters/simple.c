@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   selection.c                                        :+:      :+:    :+:   */
+/*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int		stack_min(stack **s)
+static int	stack_min(stack **s)
 {
 	stack	*temp;
 	int		min;
@@ -30,20 +30,19 @@ static int		stack_min(stack **s)
 	return (min);
 }
 
-void	sort_simple_selection(stack **a, stack **b)
+void		simple(stack **a, stack **b, stack **operations)
 {
 	int		min;
 
 	if (!a || !*a)
-		return ;		
-				
+		return ;
 	while (*a && (*a)->next)
 	{
 		min = stack_min(a);
 		while ((*a)->number != min)
-			ra(a);
-		pb(a, b);			
+			rotate_a(a, operations);
+		push_b(a, b, operations);
 	}
 	while (*b)
-		pa(a, b);
+		push_a(a, b, operations);
 }

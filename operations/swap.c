@@ -27,21 +27,21 @@ static void	swap(stack **s)
 	*s = s2;
 }
 
-void	sa(stack **a)
+void	swap_a(stack **a, stack **operations)
 {
 	swap(a);
-	printf("sa\n");
+	add_back(operations, new(sa));
 }
 
-void	sb(stack **b)
+void	swap_b(stack **b, stack **operations)
 {
 	swap(b);
-	printf("sb\n");
+	add_back(operations, new(sa));
 }
 
-void	ss(stack **a, stack **b)
+void	swap_ab(stack **a, stack **b, stack **operations)
 {
 	swap(a);
 	swap(b);
-	printf("ss\n");
+	add_back(operations, new(sa));
 }

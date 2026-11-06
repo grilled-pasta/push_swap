@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	rotate(stack **s)
 {
@@ -25,21 +24,21 @@ static void	rotate(stack **s)
 	temp->next = NULL;
 }
 
-void	ra(stack **a)
+void	rotate_a(stack **a, stack **operations)
 {
 	rotate(a);
-	printf("ra\n");
+	add_back(operations, new(ra));
 }
 
-void	rb(stack **b)
+void	rotate_b(stack **b, stack **operations)
 {
 	rotate(b);
-	printf("rb\n");
+	add_back(operations, new(rb));
 }
 
-void	rr(stack **a, stack **b)
+void	rotate_ab(stack **a, stack **b, stack **operations)
 {
 	rotate(a);
 	rotate(b);
-	printf("rr\n");
+	add_back(operations, new(rr));
 }
