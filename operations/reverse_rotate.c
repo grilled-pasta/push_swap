@@ -38,12 +38,12 @@ void	reverse_rotate_a(stack **a, stack **operations)
 void	reverse_rotate_b(stack **b, stack **operations)
 {
 	reverse_rotate(b);
-	add_back(operations, new(rra));
+	add_back(operations, new(rrb));
 }
 
 void	reverse_rotate_ab(stack **a, stack **b, stack **operations)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	add_back(operations, new(rra));
+	add_back(operations, new(rrr));
 }

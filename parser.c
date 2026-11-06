@@ -61,7 +61,8 @@ args	*parse_args(int argc, char **argv)
 
 	i = 1;
 	args_parsed = malloc(sizeof(args));
-	s = malloc(sizeof(stack));
+	// s = malloc(sizeof(stack));
+	s = NULL;
 	if (!args_parsed)
 		return (NULL);
 	args_parsed->strategy = "adaptive";
@@ -74,6 +75,7 @@ args	*parse_args(int argc, char **argv)
 	// 	return (clear(s), printf("Error\n"), NULL);
 	while (i < argc)
 	{
+		// printf("[%i] = %s\n", i, argv[i]);
 		temp = new(atoi(argv[i]));
 		if (!is_unique(s, temp->number))
 			return (clear(s), free(temp), printf("Error\n"), NULL);

@@ -36,12 +36,12 @@ void	swap_a(stack **a, stack **operations)
 void	swap_b(stack **b, stack **operations)
 {
 	swap(b);
-	add_back(operations, new(sa));
+	add_back(operations, new(sb));
 }
 
 void	swap_ab(stack **a, stack **b, stack **operations)
 {
 	swap(a);
 	swap(b);
-	add_back(operations, new(sa));
+	add_back(operations, new(ss));
 }
