@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alla <alkonsta@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:56:39 by alla              #+#    #+#             */
-/*   Updated: 2026/11/03 17:49:25 by alla             ###   ########.fr       */
+/*   Updated: 2026/11/06 16:11:45 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,17 @@ args	*parse_args(int argc, char **argv)
 	if (!args_parsed)
 		return (NULL);
 	args_parsed->strategy = "adaptive";
-	if (strncmp(argv[i], "--", 2) == 0 && is_strategy(argv[i]))
+	if (is_strategy(argv[i]))
 	{
 		args_parsed->strategy = argv[i] + 2;
 		i++;
 	}
-	else if (strncmp(argv[i], "--", 2) == 0) 
-		return (clear(s), printf("Error\n"), NULL);
+	// else if (strncmp(argv[i], "--", 2) == 0) 
+	// 	return (clear(s), printf("Error\n"), NULL);
 	while (i < argc)
 	{
 		temp = new(atoi(argv[i]));
-		if ((strcmp(argv[i], "0") != 0 && temp->number == 0) 
-				|| !is_unique(s, temp->number))
+		if (!is_unique(s, temp->number))
 			return (clear(s), free(temp), printf("Error\n"), NULL);
 		add_back(&s, temp);
 		i++;
