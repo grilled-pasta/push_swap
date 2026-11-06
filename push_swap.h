@@ -16,6 +16,7 @@
 // # include <stdio.h>
 # include <stdlib.h>
 // # include <string.h>
+# include "libftprintf/ft_printf.h"
 
 enum Operation {sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr};
 
@@ -46,6 +47,7 @@ void	clear(stack *s);
 float	compute_disorder(stack *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
+int		ft_atoi(const char *nptr);
 // parser
 args	*parse_args(int argc, char **argv);
 // operations

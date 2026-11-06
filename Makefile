@@ -1,4 +1,4 @@
-# **************************************************************************** #
+#**************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -12,9 +12,12 @@
 
 NAME = push_swap
 
+PRINTF_DIR = libftprintf
+PRINTF = $(PRINTF_DIR)/libftprintf.a
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I.
+CPPFLAGS = -I. -I$(PRINTF_DIR)
 
 SRCS = push_swap.c \
        stack.c \
@@ -26,17 +29,21 @@ SRCS = push_swap.c \
        sorters/simple.c \
        sorters/medium.c \
        sorters/complex.c \
-       parser.c
+       parser.c \
+       utils.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS) $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJS) $(PRINTF) -o $(NAME)
 
 %.o: %.c push_swap.h
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+$(PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
 
 clean:
 	rm -f $(OBJS)
