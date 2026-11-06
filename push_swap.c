@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libftprintf/ft_printf.h"
-// #include "libftprintf/ft_printf.h"
-// #include <string.h>
 
 static void	putnbr(int number)
 {

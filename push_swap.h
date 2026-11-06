@@ -13,9 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-// # include <stdio.h>
 # include <stdlib.h>
-// # include <string.h>
 # include "libftprintf/ft_printf.h"
 
 enum Operation {sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr};
