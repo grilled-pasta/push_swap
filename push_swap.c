@@ -17,7 +17,6 @@ static void	putnbr(int number)
 {
 	char	*operation;
 
-	operation = NULL;
 	if (number == sa)
 		operation = "sa";
 	else if (number == sb)
@@ -38,7 +37,7 @@ static void	putnbr(int number)
 		operation = "rra";
 	else if (number == rrb)
 		operation = "rrb";
-	else if (number == rrr)
+	else
 		operation = "rrr";
 	printf("%s\n", operation);
 }
@@ -66,6 +65,11 @@ void	sort(args *args, stack **operations)
 	clear(temp);
 }
 
+void	putn(int number)
+{
+	printf("%d\t", number);
+}
+
 int	main(int argc, char **argv)
 {
 	args	*args;
@@ -73,8 +77,16 @@ int	main(int argc, char **argv)
 
 	args = parse_args(argc, argv);
 	operations = NULL;
+	if (args == NULL)
+	{
+		if (args != NULL && args->stack != NULL)
+			clear(args->stack);
+		return (0);
+	}
+	// iter(args->stack, putn);
 	sort(args, &operations);
 	iter(operations, putnbr);
-	printf("\noperations: %d\n", ft_lstsize(operations));
+	// iter(args->stack, putn);
+	// printf("\noperations: %d\n", ft_lstsize(operations));
 	return (clear(args->stack), free(args), clear(operations), 0);
 }
