@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/03 17:47:59 by alla             ###   ########.fr       */
+/*   Updated: 2026/11/06 17:58:48 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	putnbr(int number)
 		operation = "rrb";
 	else
 		operation = "rrr";
-	printf("%s\n", operation);
+	ft_printf("%s\n", operation);
 }
 
 void	sort(args *args, stack **operations)
@@ -47,13 +47,13 @@ void	sort(args *args, stack **operations)
 	stack	*temp;
 	
 	temp = NULL;
-	if (strcmp(args->strategy, "simple") == 0)
+	if (ft_strcmp(args->strategy, "simple") == 0)
 		simple(&args->stack, &temp, operations);
-	else if (strcmp(args->strategy, "medium") == 0)
+	else if (ft_strcmp(args->strategy, "medium") == 0)
 		medium(&args->stack, &temp, operations);
-	else if (strcmp(args->strategy, "complex") == 0)
+	else if (ft_strcmp(args->strategy, "complex") == 0)
 		complex(&args->stack, &temp, operations);
-	else if (strcmp(args->strategy, "adaptive") == 0)
+	else if (ft_strcmp(args->strategy, "adaptive") == 0)
 	{
 		if (args->disorder <= 0.2)
 			simple(&args->stack, &temp, operations);
@@ -67,7 +67,7 @@ void	sort(args *args, stack **operations)
 
 void	putn(int number)
 {
-	printf("%d\t", number);
+	ft_printf("%d\t", number);
 }
 
 int	main(int argc, char **argv)

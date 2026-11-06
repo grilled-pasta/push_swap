@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:56:39 by alla              #+#    #+#             */
-/*   Updated: 2026/11/06 16:11:45 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/06 17:58:02 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static int	is_unique(stack *s, int number)
 
 static int	is_strategy(char *arg)
 {
-	return (strcmp(arg, "--adaptive") == 0 || strcmp(arg, "--simple") == 0 
-			|| strcmp(arg, "--medium") == 0 || strcmp(arg, "--complex") == 0);
+	return (ft_strcmp(arg, "--adaptive") == 0 || ft_strcmp(arg, "--simple") == 0 
+			|| ft_strcmp(arg, "--medium") == 0 || ft_strcmp(arg, "--complex") == 0);
 }
 
 args	*parse_args(int argc, char **argv)
@@ -70,13 +70,13 @@ args	*parse_args(int argc, char **argv)
 		args_parsed->strategy = argv[i] + 2;
 		i++;
 	}
-	else if (strncmp(argv[i], "--", 2) == 0) 
-		return (clear(s), printf("Error\n"), NULL);
+	else if (ft_strncmp(argv[i], "--", 2) == 0) 
+		return (clear(s), ft_printf("Error\n"), NULL);
 	while (i < argc)
 	{
-		temp = new(atoi(argv[i]));
+		temp = new(ft_atoi(argv[i]));
 		if (!is_unique(s, temp->number))
-			return (clear(s), free(temp), printf("Error\n"), NULL);
+			return (clear(s), free(temp), ft_printf("Error\n"), NULL);
 		add_back(&s, temp);
 		i++;
 	}

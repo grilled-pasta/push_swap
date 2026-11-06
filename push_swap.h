@@ -6,16 +6,16 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/05 15:26:55 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/06 17:56:57 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
+// # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
+// # include <string.h>
 
 enum Operation {sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr};
 
@@ -44,6 +44,8 @@ void	iter(stack *s, void (*f)(int number));
 void	clear(stack *s);
 // utils
 float	compute_disorder(stack *s);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_strncmp(char *s1, char *s2, int n);
 // parser
 args	*parse_args(int argc, char **argv);
 // operations
