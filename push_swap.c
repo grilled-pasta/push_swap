@@ -65,7 +65,7 @@ void	sort(args *args, stack **operations)
 	clear(temp);
 }
 
-static int	is_sorted(stack *s)
+int	is_sorted(stack *s)
 {
 	int	prev;
 
@@ -83,6 +83,8 @@ static int	is_sorted(stack *s)
 	return (1);
 }
 
+#include <unistd.h>
+
 int	main(int argc, char **argv)
 {
 	args	*args;
@@ -91,7 +93,7 @@ int	main(int argc, char **argv)
 	args = parse_args(argc, argv);
 	operations = NULL;
 	if (args == NULL)
-		return (-1);
+		return (write(2, "Error\n", 7), -1);
 	if (!is_sorted(args->stack))
 	{
 		sort(args, &operations);
