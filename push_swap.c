@@ -65,6 +65,24 @@ void	sort(args *args, stack **operations)
 	clear(temp);
 }
 
+static int	is_sorted(stack *s)
+{
+	int	prev;
+
+	if (!s)
+		return (1);
+	prev = s->number;
+	s = s->next;
+	while (s)
+	{
+		if (s->number < prev)
+			return (0);
+		prev = s->number;
+		s = s->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	args	*args;
@@ -73,8 +91,11 @@ int	main(int argc, char **argv)
 	args = parse_args(argc, argv);
 	operations = NULL;
 	if (args == NULL)
-		return (ft_printf("Error\n"), -1);
-	sort(args, &operations);
-	iter(operations, put_operations);
+		return (-1);
+	if (!is_sorted(args->stack))
+	{
+		sort(args, &operations);
+		iter(operations, put_operations);
+	}
 	return (clear(args->stack), free(args), clear(operations), 0);
 }

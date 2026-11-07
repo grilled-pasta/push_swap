@@ -54,6 +54,21 @@ static int	is_strategy(char *arg)
 			|| ft_strcmp(arg, "--medium") == 0 || ft_strcmp(arg, "--complex") == 0);
 }
 
+static int	is_number(char *s)
+{
+	if (!s || !*s) 
+		return (0);
+	if (*s == '-')
+		s++;
+	while (*s)
+	{
+		if (!is_digit(*s))
+			return (0);
+		s++;
+	}
+	return (1);
+}
+
 args	*parse_args(int argc, char **argv)
 {
 	args	*args_parsed;
@@ -71,19 +86,22 @@ args	*parse_args(int argc, char **argv)
 	if (is_strategy(argv[i]))
 	{
 		args_parsed->strategy = argv[i] + 2;
+		if (argc < 3)
+			return (clear(s), free(args_parsed), NULL);
 		i++;
 	}
-	else if (!is_digit(argv[i][0])) 
+	else if (!is_number(argv[i])) 
 		return (clear(s), free(args_parsed), NULL);
 	while (i < argc)
 	{
 		temp_i = ft_atoi(argv[i]);
 		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
 				|| !is_unique(s, temp_i))
-			return (clear(s), free(args_parsed), NULL);
+			return (clear(s), free(args_parsed), ft_printf("Error"), NULL);
 		temp_s = new(temp_i);
 		if (!temp_s)
-			return (clear(s), clear(temp_s), free(args_parsed), NULL);
+			return (clear(s), clear(temp_s), free(args_parsed), 
+				ft_printf("Error"), NULL);
 		add_back(&s, temp_s);
 		i++;
 	}
