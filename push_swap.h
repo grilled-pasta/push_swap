@@ -45,6 +45,7 @@ void	clear(stack *s);
 float	compute_disorder(stack *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
+int		is_digit(char c);
 int		ft_atoi(const char *nptr);
 // parser
 args	*parse_args(int argc, char **argv);

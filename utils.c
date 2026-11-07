@@ -33,13 +33,16 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	return ((unsigned char) *s1 - (unsigned char) *s2);
 }
 
+int	is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
 int	ft_atoi(const char *nptr)
 {
 	long	res;
 	int		sign;
 
-	while ((*nptr >= '\t' && *nptr <= '\r') || *nptr == ' ')
-		nptr++;
 	sign = 1;
 	if (*nptr == '+' || *nptr == '-')
 	{
@@ -48,9 +51,13 @@ int	ft_atoi(const char *nptr)
 		nptr++;
 	}
 	res = 0;
-	while (*nptr >= '0' && *nptr <= '9')
+	while (*nptr)
 	{
+		if (!is_digit(*nptr))
+			return (0);
 		res = res * 10 + (*nptr - '0');
+		if ((sign == -1 && res * sign < INT_MIN) || res > INT_MAX)
+			return (0);
 		nptr++;
 	}
 	return (sign * res);

@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libftprintf/ft_printf.h"
 
-static void	putnbr(int number)
+static void	put_operations(int number)
 {
 	char	*operation;
 
@@ -64,11 +65,6 @@ void	sort(args *args, stack **operations)
 	clear(temp);
 }
 
-// void	putn(int number)
-// {
-// 	ft_printf("%d\t", number);
-// }
-
 int	main(int argc, char **argv)
 {
 	args	*args;
@@ -77,14 +73,8 @@ int	main(int argc, char **argv)
 	args = parse_args(argc, argv);
 	operations = NULL;
 	if (args == NULL)
-	{
-		if (args != NULL && args->stack != NULL)
-			clear(args->stack);
-		return (0);
-	}
-	// iter(args->stack, putn);
+		return (ft_printf("Error\n"), -1);
 	sort(args, &operations);
-	iter(operations, putnbr);
-	// iter(args->stack, putn);
+	iter(operations, put_operations);
 	return (clear(args->stack), free(args), clear(operations), 0);
 }

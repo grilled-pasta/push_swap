@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libftprintf/ft_printf.h"
 #include "push_swap.h"
+#include <stdlib.h>
 
 float	compute_disorder(stack *s)
 {
@@ -56,13 +58,14 @@ args	*parse_args(int argc, char **argv)
 {
 	args	*args_parsed;
 	stack	*s;
-	stack	*temp;
+	stack	*temp_s;
 	int		i;
+	int		temp_i;
 
 	i = 1;
 	args_parsed = malloc(sizeof(args));
 	s = NULL;
-	if (!args_parsed)
+	if (!args_parsed || argc == 1)
 		return (NULL);
 	args_parsed->strategy = "adaptive";
 	if (is_strategy(argv[i]))
@@ -70,14 +73,18 @@ args	*parse_args(int argc, char **argv)
 		args_parsed->strategy = argv[i] + 2;
 		i++;
 	}
-	else if (ft_strncmp(argv[i], "--", 2) == 0) 
-		return (clear(s), ft_printf("Error\n"), NULL);
+	else if (!is_digit(argv[i][0])) 
+		return (clear(s), free(args_parsed), NULL);
 	while (i < argc)
 	{
-		temp = new(ft_atoi(argv[i]));
-		if (!is_unique(s, temp->number))
-			return (clear(s), free(temp), ft_printf("Error\n"), NULL);
-		add_back(&s, temp);
+		temp_i = ft_atoi(argv[i]);
+		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
+				|| !is_unique(s, temp_i))
+			return (clear(s), free(args_parsed), NULL);
+		temp_s = new(temp_i);
+		if (!temp_s)
+			return (clear(s), clear(temp_s), free(args_parsed), NULL);
+		add_back(&s, temp_s);
 		i++;
 	}
 	args_parsed->stack = s;
