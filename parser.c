@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf/ft_printf.h"
 #include "push_swap.h"
-#include <stdlib.h>
 
 float	compute_disorder(stack *s)
 {
@@ -81,7 +79,7 @@ args	*parse_args(int argc, char **argv)
 	args_parsed = malloc(sizeof(args));
 	s = NULL;
 	if (!args_parsed || argc == 1)
-		return (NULL);
+		return (free(args_parsed), NULL);
 	args_parsed->strategy = "adaptive";
 	if (is_strategy(argv[i]))
 	{
@@ -91,17 +89,16 @@ args	*parse_args(int argc, char **argv)
 		i++;
 	}
 	else if (!is_number(argv[i])) 
-		return (clear(s), free(args_parsed), ft_printf("Error"), NULL);
+		return (clear(s), free(args_parsed), NULL);
 	while (i < argc)
 	{
 		temp_i = ft_atoi(argv[i]);
 		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
 				|| !is_unique(s, temp_i))
-			return (clear(s), free(args_parsed), ft_printf("Error"), NULL);
+			return (clear(s), free(args_parsed), NULL);
 		temp_s = new(temp_i);
 		if (!temp_s)
-			return (clear(s), clear(temp_s), free(args_parsed), 
-				ft_printf("Error"), NULL);
+			return (clear(s), clear(temp_s), free(args_parsed), NULL);
 		add_back(&s, temp_s);
 		i++;
 	}
