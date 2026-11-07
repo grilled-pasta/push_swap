@@ -91,7 +91,7 @@ args	*parse_args(int argc, char **argv)
 		i++;
 	}
 	else if (!is_number(argv[i])) 
-		return (clear(s), free(args_parsed), NULL);
+		return (clear(s), free(args_parsed), ft_printf("Error"), NULL);
 	while (i < argc)
 	{
 		temp_i = ft_atoi(argv[i]);
