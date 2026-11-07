@@ -38,15 +38,16 @@ void	add_front(stack **s, stack *s_new);
 void	add_back(stack **s, stack *s_new);
 stack	*last(stack *s);
 int		ft_lstsize(stack *s);
-stack	*element(stack *s, int index);
 void	iter(stack *s, void (*f)(int number));
 void	clear(stack *s);
+void	ft_ranking(stack **a);
 // utils
 float	compute_disorder(stack *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
 int		is_digit(char c);
 int		ft_atoi(const char *nptr);
+int		is_sorted(stack *s);
 // parser
 args	*parse_args(int argc, char **argv);
 // operations
