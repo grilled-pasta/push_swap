@@ -79,6 +79,8 @@ int	main(int argc, char **argv)
 	args	*args;
 	stack	*operations;
 
+	if (argc < 2)
+		return (0);
 	args = parse_args(argc, argv);
 	operations = NULL;
 	if (args == NULL)
