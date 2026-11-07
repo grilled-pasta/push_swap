@@ -12,28 +12,6 @@
 
 #include "push_swap.h"
 
-static void ft_ranking(stack **a)
-{
-	stack *current;
-	stack *temp;
-	
-	current = *a;
-	temp = *a;
-	while (current)
-	{
-		current->rank = 0;
-		while (temp)
-		{
-			if (current->number > temp->number)
-			{
-				current->rank++;
-			}
-			temp = temp->next;
-		}
-		current = current->next;
-		temp = *a;
-	}
-}
 int bin_checker(stack **a, stack **b, int bit, stack **operations)
 {
 	int i;

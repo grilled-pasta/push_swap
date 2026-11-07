@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/06 17:56:57 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:37:30 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include <stdlib.h>
 # include "libftprintf/ft_printf.h"
 
-enum Operation {sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr};
+typedef enum e_operation {
+	sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr
+}			operation;
 
 typedef	struct	s_stack
 {
@@ -30,6 +32,8 @@ typedef struct	s_args
 	char	*strategy;
 	stack	*stack;
 	float	disorder;
+	int		benchmark;
+	int		adaptive;
 }				args;
 
 // stack
@@ -62,10 +66,11 @@ void	rotate_ab(stack **a, stack **b, stack **operations);
 void	reverse_rotate_a(stack **a, stack **operations);
 void	reverse_rotate_b(stack **b, stack **operations);
 void	reverse_rotate_ab(stack **a, stack **b, stack **operations);
-
 // sorting algorithms
 void	simple(stack **a, stack **b, stack **operations);
 int 	medium(stack **a, stack **b, stack **operations);
 int 	complex(stack **a, stack **b, stack **operations);
+// benchmark
+void	print_benchmark(args *args, stack *operations);
 
 #endif

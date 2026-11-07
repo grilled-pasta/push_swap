@@ -30,7 +30,8 @@ SRCS = push_swap.c \
        sorters/medium.c \
        sorters/complex.c \
        parser.c \
-       utils.c
+       utils.c \
+       benchmark.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -47,8 +48,10 @@ $(PRINTF):
 
 clean:
 	rm -f $(OBJS)
+	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(PRINTF_DIR) fclean
 
 .PHONY: all clean fclean

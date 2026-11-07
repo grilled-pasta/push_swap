@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:56:39 by alla              #+#    #+#             */
-/*   Updated: 2026/11/06 17:58:02 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/07 18:42:27 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,16 @@ static int	is_number(char *s)
 	return (1);
 }
 
+static void	select_adaptive(args *args)
+{
+	if (args->disorder <= 0.2 || ft_lstsize(args->stack) <= 6)
+		args->strategy = "simple";
+	else if (args->disorder <= 0.5)
+		args->strategy = "medium";
+	else
+		args->strategy = "complex";
+}
+
 args	*parse_args(int argc, char **argv)
 {
 	args	*args_parsed;
@@ -80,18 +90,24 @@ args	*parse_args(int argc, char **argv)
 	s = NULL;
 	if (!args_parsed || argc == 1)
 		return (free(args_parsed), NULL);
-	args_parsed->strategy = "adaptive";
-	if (is_strategy(argv[i]))
+	args_parsed->adaptive = 1;
+	args_parsed->benchmark = 0;
+	if (ft_strcmp(argv[i], "--bench") == 0)
 	{
-		args_parsed->strategy = argv[i] + 2;
-		if (argc < 3)
-			return (clear(s), free(args_parsed), NULL);
+		args_parsed->benchmark = 1;
 		i++;
 	}
-	else if (!is_number(argv[i])) 
-		return (clear(s), free(args_parsed), NULL);
+	if (i < argc && is_strategy(argv[i]))
+	{
+		args_parsed->strategy = argv[i] + 2;
+		if (ft_strcmp(args_parsed->strategy, "adaptive") != 0)
+			args_parsed->adaptive = 0;
+		i++;
+	}
 	while (i < argc)
 	{
+		if (!is_number(argv[i])) 
+			return (clear(s), free(args_parsed), NULL);
 		temp_i = ft_atoi(argv[i]);
 		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
 				|| !is_unique(s, temp_i))
@@ -104,5 +120,7 @@ args	*parse_args(int argc, char **argv)
 	}
 	args_parsed->stack = s;
 	args_parsed->disorder = compute_disorder(args_parsed->stack);
+	if (args_parsed->adaptive)
+		select_adaptive(args_parsed);
 	return (args_parsed);
 }

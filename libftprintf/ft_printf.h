@@ -32,10 +32,12 @@ typedef struct s_specs
 	int		min_width;
 	int		precision;
 	char	specifier;
+	int		fd;
 }				t_specs;
 
 int		ft_printf(const char *format, ...);
-t_specs	parse_specs(const char **format);
+int		ft_printf_err(const char *format, ...);
+t_specs	parse_specs(const char **format, int fd);
 // formatters_char
 int		format_c(va_list args, t_specs specs);
 int		format_s(va_list args, t_specs specs);
@@ -48,8 +50,8 @@ int		format_x(va_list args, t_specs specs);
 int		format_specs(char *s, int length, t_specs specs);
 // str utils
 size_t	ft_strlen(const char *s);
-int		ft_putchar(char c);
-int		ft_putnstr(char	*s, int length);
+int		ft_putchar(char c, int fd);
+int		ft_putnstr(char	*s, int length, int fd);
 int		ft_putnbr_base(unsigned long n, char *base, char *buffer);
 // spec utils
 int		calc_str_len(char *s, int length, t_specs specs);

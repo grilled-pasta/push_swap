@@ -12,49 +12,51 @@
 
 #include "push_swap.h"
 
-// calculates the ranking of each number on A
-static void ft_ranking(stack **a)
+int		ft_position(stack *a, int rank)
 {
-	stack *current;
-	stack *temp;
-	
-	current = *a;
-	temp = *a;
-	while (current)
+	int	position;
+
+	position = 0;
+	while (a)
 	{
-		current->rank = 0;
-		while (temp)
-		{
-			if (current->number > temp->number)
-				current->rank++;
-			temp = temp->next;
-		}
-		current = current->next;
-		temp = *a;
+		if (a->rank == rank)
+			return (position);
+		a = a->next;
+		position++;
 	}
+	return (-1);
 }
 
-void		simple(stack **a, stack **b, stack **operations)
+void	simple(stack **a, stack **b, stack **operations)
 {
-	int		min;
+	int		rank;
 	int		size;
+	int		position;
 
 	if (!a || !*a || !b)
 		return ;
 	size = ft_lstsize(*a);
-	ft_ranking(a);
-	min = 0;
-	while (*a && (*a)->next && min < size)
+	if (size == 2)
 	{
-		while ((*a)->rank != min)
+		swap_a(a, operations);
+		return ;
+	} 
+	ft_ranking(a);
+	rank = 0;
+	while (*a && rank < size -1)
+	{
+		position = ft_position(*a, rank); // if position == -1 => error?
+		while ((*a)->rank != rank)
 		{
-			if ((*a)->rank > size / 2)
-				reverse_rotate_a(a, operations);
-			else
+			if (position < (size - 1) / 2)
 				rotate_a(a, operations);
+			else
+				reverse_rotate_a(a, operations);
 		}
+		if (is_sorted(*a))
+			break ;
 		push_b(a, b, operations);
-		min++;
+		rank++;
 	}
 	while (*b)
 		push_a(a, b, operations);

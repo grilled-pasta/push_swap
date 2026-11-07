@@ -12,27 +12,6 @@
 
 #include "push_swap.h"
 
-// calculates the ranking of each number on A
-static void ft_ranking(stack **a)
-{
-	stack *current;
-	stack *temp;
-	
-	current = *a;
-	temp = *a;
-	while (current)
-	{
-		current->rank = 0;
-		while (temp)
-		{
-			if (current->number > temp->number)
-				current->rank++;
-			temp = temp->next;
-		}
-		current = current->next;
-		temp = *a;
-	}
-}
 // square root to calculate amount of chunks
 double ft_sqrt(double n)
 {
