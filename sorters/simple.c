@@ -36,7 +36,7 @@ void	sort_three(stack **a, stack **operations)
 	first = (*a)->rank;
 	second = (*a)->next->rank;
 	third = (*a)->next->next->rank;
-	if (first == 1 && second == 2 && third == 3)
+	if (first == 1 && second == 2 && third == 0)
 		reverse_rotate_a(a, operations);
 	else if (first == 2 && second == 0 && third == 1)
 		rotate_a(a, operations);
@@ -80,7 +80,7 @@ void	simple(stack **a, stack **b, stack **operations)
 		position = ft_position(*a, rank); // if position == -1 => error?
 		while ((*a)->rank != rank)
 		{
-			if (position < (size - 1) / 2)
+			if (position < size / 2)
 				rotate_a(a, operations);
 			else
 				reverse_rotate_a(a, operations);
