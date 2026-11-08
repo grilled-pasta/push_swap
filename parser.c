@@ -69,7 +69,7 @@ static int	is_number(char *s)
 
 static void	select_adaptive(args *args)
 {
-	if (args->disorder <= 0.2 || ft_lstsize(args->stack) <= 6)
+	if (args->disorder <= 0.2 || ft_lstsize(args->stack) <= 5)
 		args->strategy = "simple";
 	else if (args->disorder <= 0.5)
 		args->strategy = "medium";
