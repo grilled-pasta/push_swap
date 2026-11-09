@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 00:23:24 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:58:47 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:26:58 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	reverse_rotate(stack **s)
 	while (s_temp->next->next != NULL)
 		s_temp = s_temp->next;
 	s_last = s_temp->next;
-
 	s_last->next = *s;
 	s_temp->next = NULL;
 	*s = s_last;

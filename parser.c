@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:56:39 by alla              #+#    #+#             */
-/*   Updated: 2026/11/06 16:11:45 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:18:46 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static int	is_unique(stack *s, int number)
 
 static int	is_strategy(char *arg)
 {
-	return (strcmp(arg, "--adaptive") == 0 || strcmp(arg, "--simple") == 0 
-			|| strcmp(arg, "--medium") == 0 || strcmp(arg, "--complex") == 0);
+	return (strcmp(arg, "--adaptive") == 0 || strcmp(arg, "--simple") == 0
+		|| strcmp(arg, "--medium") == 0 || strcmp(arg, "--complex") == 0);
 }
 
 args	*parse_args(int argc, char **argv)

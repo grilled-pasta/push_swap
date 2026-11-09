@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 18:33:36 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/03 17:47:29 by alla             ###   ########.fr       */
+/*   Updated: 2026/11/09 22:27:32 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ void	push_b(stack **a, stack **b, stack **operations)
 	push(b, a);
 	add_back(operations, new(pb));
 }
-

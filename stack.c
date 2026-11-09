@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:39:59 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/03 17:49:32 by alla             ###   ########.fr       */
+/*   Updated: 2026/11/09 22:18:04 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	add_front(stack **s, stack *s_new)
 void	add_back(stack **s, stack *s_new)
 {
 	stack	*last_s;
-	
+
 	if (*s)
 	{
 		last_s = last(*s);
@@ -44,7 +44,7 @@ void	add_back(stack **s, stack *s_new)
 		*s = s_new;
 }
 
-int		ft_lstsize(stack *s)
+int	ft_lstsize(stack *s)
 {
 	int	size;
 
@@ -52,7 +52,7 @@ int		ft_lstsize(stack *s)
 	while (s)
 	{
 		size++;
-		s=s->next;
+		s = s->next;
 	}
 	return (size);
 }
