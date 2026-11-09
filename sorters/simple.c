@@ -3,46 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 00:58:51 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/03 17:45:56 by alla             ###   ########.fr       */
+/*   Updated: 2026/11/09 17:26:10 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	stack_min(stack **s)
+int ft_ranksearch(stack **a, int rank)
 {
-	stack	*temp;
-	int		min;
+	int	position;
+	stack *temp;
 
-	if (!s || !*s)
-		return (0);
-	temp = *s;
-	min = temp->number;
-	while (temp)
+	position = 0;
+	temp = *a;
+	while(temp)
 	{
-		if (temp->number < min)
-			min = temp->number;
-		temp = temp->next;
+		if (temp->rank == rank)
+			return (position);
+		position++;
+		temp =temp->next;
 	}
-	return (min);
+	return(-1);
 }
-
+void	ft_move(stack **a, stack **b, stack **operations, int rank)
+{
+	int		position;
+	int		size_a;
+	
+	size_a = ft_lstsize(*a);
+	position = ft_ranksearch(a, rank);
+	if (position <= size_a/2)
+	{
+		while(position > 0)
+		{
+			rotate_a(a, operations);
+			position--;
+		}
+	}
+	else
+	{
+		while(size_a-position > 0)
+		{
+			reverse_rotate_a(a, operations);
+			position++;
+		}
+	}
+	push_b(a, b, operations);
+}
 void		simple(stack **a, stack **b, stack **operations)
 {
-	int		min;
+	int rank;
+	int size_a;
 
-	if (!a || !*a)
-		return ;
-	while (*a && (*a)->next)
+	rank = 0;
+	size_a = ft_lstsize(*a);
+	ft_ranking(a);
+	while (rank < size_a)
 	{
-		min = stack_min(a);
-		while ((*a)->number != min)
-			rotate_a(a, operations);
-		push_b(a, b, operations);
+		ft_move(a, b, operations, rank);
+		rank++;
 	}
-	while (*b)
+	while(*b)
+	{
 		push_a(a, b, operations);
+	}
 }
