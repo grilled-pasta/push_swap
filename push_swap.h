@@ -36,6 +36,13 @@ typedef struct	s_args
 	int		adaptive;
 }				args;
 
+typedef struct s_chunk
+{
+	int	size;
+	int	index;
+	int	remaining;
+}	t_chunk;
+
 // stack
 stack	*new(int number);
 void	add_front(stack **s, stack *s_new);
