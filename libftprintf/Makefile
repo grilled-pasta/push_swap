@@ -13,7 +13,7 @@
 NAME = libftprintf.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -fPIE -Wall -Wextra -Werror
 
 SRCS = ft_printf.c \
        parser_specs.c \
