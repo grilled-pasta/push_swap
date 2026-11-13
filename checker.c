@@ -12,7 +12,7 @@
 
 #include "checker.h"
 
-static int	add_operation(operation operation, t_stack **operations)
+static int	add_operation(t_operation operation, t_stack **operations)
 {
 	t_stack	*temp;
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 	t_stack	*operations;
 
 	operations = NULL;
-	a = parse_t_stack(1, argc, argv);
+	a = parse_stack(1, argc, argv);
 	if (a == NULL)
 		return (ft_printf_err("Error\n"), -1);
 	b = NULL;

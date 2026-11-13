@@ -82,6 +82,6 @@ float	compute_disorder(t_stack *s);
 int		is_number(char *s);
 int		is_strategy(char *arg);
 int		is_unique(t_stack *s, int number);
-t_stack	*parse_t_stack(int i, int argc, char **argv);
+t_stack	*parse_stack(int i, int argc, char **argv);
 
 #endif
