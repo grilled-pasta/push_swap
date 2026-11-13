@@ -51,7 +51,6 @@ stack	*last(stack *s);
 int		ft_lstsize(stack *s);
 void	iter(stack *s, void (*f)(int number));
 void	clear(stack *s);
-void	ft_ranking(stack **a);
 // utils
 float	compute_disorder(stack *s);
 int		ft_strcmp(char *s1, char *s2);

@@ -3,6 +3,7 @@ push_swap
 
 # Object files
 *.o
+*.a
 
-# Bear
-compile_commands.json
+# checkers
+checkers/**

@@ -48,7 +48,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(COMMON_OBJS) $(PRINTF)
-	$(CC) $(CFLAGS) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.c push_swap.h
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -67,4 +67,6 @@ fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)
 	$(MAKE) -C $(PRINTF_DIR) fclean
 
-.PHONY: all clean fclean
+re:	fclean all
+
+.PHONY: all bonus clean fclean re
