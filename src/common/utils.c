@@ -41,10 +41,12 @@ int	is_digit(char c)
 int	ft_atoi(const char *nptr)
 {
 	long	res;
-	int		sign;
+	long	sign;
 
 	sign = 1;
-	if (*nptr == '+' || *nptr == '-')
+	if (ft_strcmp((char *) nptr, "-2147483648") == 0)
+		return (-2147483648);
+	if (*nptr == '-')
 	{
 		if (*nptr == '-')
 			sign = -1;
@@ -56,7 +58,7 @@ int	ft_atoi(const char *nptr)
 		if (!is_digit(*nptr))
 			return (0);
 		res = res * 10 + (*nptr - '0');
-		if ((sign == -1 && res * sign < INT_MIN) || res > INT_MAX)
+		if ((sign == -1 && (res * sign) < INT_MIN) || res > INT_MAX)
 			return (0);
 		nptr++;
 	}

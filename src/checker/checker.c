@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 
-static t_stack	*parse_operations(void)
+static t_stack	*parse_operations(char **error)
 {
 	char	*line;
 	t_stack	*operations;
@@ -25,10 +25,16 @@ static t_stack	*parse_operations(void)
 	while (line)
 	{
 		if (line[ft_strlen(line) - 1] != '\n')
+		{
+			*error = "";
 			return (free(line), clear(operations), NULL);
+		}
 		line[ft_strlen(line) - 1] = '\0';
 		if (parse_operation(line, &operations) == -1)
+		{
+			*error = "";
 			return (free(line), clear(operations), NULL);
+		}
 		free(line);
 		line = get_next_line(STDIN_FILENO);
 	}
@@ -49,13 +55,15 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	t_stack	*operations;
+	char	*error;
 
+	error = NULL;
 	a = parse_stack(1, argc, argv);
 	if (a == NULL)
 		return (ft_printf_err("Error\n"), -1);
 	b = NULL;
-	operations = parse_operations();
-	if (operations == NULL)
+	operations = parse_operations(&error);
+	if (error)
 		return (clear(a), ft_printf_err("Error\n"), -1);
 	apply_operations(&a, &b, operations);
 	if (is_sorted(a) && (!b || ft_lstsize(b) == 0))

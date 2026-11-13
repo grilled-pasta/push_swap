@@ -50,7 +50,7 @@ static void	select_adaptive(t_args *args)
 {
 	if (args->disorder < 0.2 || ft_lstsize(args->stack) <= 5)
 		args->strategy = "simple";
-	else if (args->disorder <= 0.5)
+	else if (args->disorder < 0.5)
 		args->strategy = "medium";
 	else
 		args->strategy = "complex";
