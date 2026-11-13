@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/07 18:40:27 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:17:37 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	put_operations(int number)
 void	sort(args *args, stack **operations)
 {
 	stack	*temp;
-	
+
 	temp = NULL;
 	if (ft_strcmp(args->strategy, "simple") == 0)
 		simple(&args->stack, &temp, operations);

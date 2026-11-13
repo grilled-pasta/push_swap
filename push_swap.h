@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/07 18:37:30 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:28:28 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef enum e_operation {
 	sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr
 }			operation;
 
-typedef	struct	s_stack
+typedef struct	s_stack
 {
 	int				number;
 	int				rank;

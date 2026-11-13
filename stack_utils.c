@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alla <alkonsta@student.codam.nl>           +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:54:06 by alla              #+#    #+#             */
-/*   Updated: 2026/11/02 04:55:04 by alla             ###   ########.fr       */
+/*   Updated: 2026/11/09 22:30:58 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ stack	*last(stack *s)
 	return (s);
 }
 
-int		size(stack *s)
+int	size(stack *s)
 {
 	int	size;
 

@@ -3,93 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 00:58:51 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/03 17:45:56 by alla             ###   ########.fr       */
+/*   Updated: 2026/11/09 22:24:48 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_position(stack *a, int rank)
+int	ft_ranksearch(stack **a, int rank)
 {
-	int	position;
+	int		position;
+	stack	*temp;
 
 	position = 0;
-	while (a)
+	temp = *a;
+	while (temp)
 	{
-		if (a->rank == rank)
+		if (temp->rank == rank)
 			return (position);
-		a = a->next;
 		position++;
+		temp = temp->next;
 	}
 	return (-1);
 }
 
-void	sort_three(stack **a, stack **operations)
+void	ft_move(stack **a, stack **b, stack **operations, int rank)
 {
-	int first;
-	int	second;
-	int	third;
+	int		position;
+	int		size_a;
 
-	first = (*a)->rank;
-	second = (*a)->next->rank;
-	third = (*a)->next->next->rank;
-	if (first == 1 && second == 2 && third == 0)
-		reverse_rotate_a(a, operations);
-	else if (first == 2 && second == 0 && third == 1)
-		rotate_a(a, operations);
-	else if (first == 2 && second == 1 && third == 0)
+	size_a = ft_lstsize (*a);
+	position = ft_ranksearch (a, rank);
+	if (position <= size_a / 2)
 	{
-		rotate_a(a, operations);
-		swap_a(a, operations);
+		while (position > 0)
+		{
+			rotate_a (a, operations);
+			position--;
+		}
 	}
-	else if (first == 1 && second == 0 && third == 2)
-		swap_a(a, operations);
 	else
 	{
-		reverse_rotate_a(a, operations);
-		swap_a(a, operations);
+		while (size_a - position > 0)
+		{
+			reverse_rotate_a (a, operations);
+			position++;
+		}
 	}
+	push_b (a, b, operations);
 }
 
 void	simple(stack **a, stack **b, stack **operations)
 {
-	int		rank;
-	int		size;
-	int		position;
+	int	rank;
+	int	size_a;
 
-	if (!a || !*a || !b)
-		return ;
-	ft_ranking(a);
-	size = ft_lstsize(*a);
-	if (size == 2)
-	{
-		swap_a(a, operations);
-		return ;
-	}
-	else if (size == 3)
-	{
-		sort_three(a, operations);
-		return ;
-	}
 	rank = 0;
-	while (*a && rank < size -1)
+	size_a = ft_lstsize(*a);
+	ft_ranking(a);
+	while (rank < size_a)
 	{
-		position = ft_position(*a, rank); // if position == -1 => error?
-		while ((*a)->rank != rank)
-		{
-			if (position < size / 2)
-				rotate_a(a, operations);
-			else
-				reverse_rotate_a(a, operations);
-		}
-		if (is_sorted(*a))
-			break ;
-		push_b(a, b, operations);
+		ft_move(a, b, operations, rank);
 		rank++;
 	}
 	while (*b)
+	{
 		push_a(a, b, operations);
+	}
 }

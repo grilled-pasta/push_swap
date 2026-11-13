@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 21:22:10 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/01 01:57:32 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:27:07 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	swap(stack **s)
 		return ;
 	s1 = *s;
 	s2 = s1->next;
-
 	s1->next = s2->next;
 	s2->next = s1;
 	*s = s2;
