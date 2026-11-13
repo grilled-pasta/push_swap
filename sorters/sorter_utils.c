@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	ft_ranking(stack **a)
+void	ft_ranking(stack **a)
 {
 	stack	*current;
 	stack	*temp;

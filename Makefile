@@ -29,6 +29,7 @@ SRCS = push_swap.c \
        sorters/simple.c \
        sorters/medium.c \
        sorters/complex.c \
+       sorters/sorter_utils.c \
        parser.c \
        utils.c \
        benchmark.c

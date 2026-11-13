@@ -84,6 +84,7 @@ void	ft_chunks(stack **a, stack **b, int chunks,
 	int	size;
 	int	chunk_size;
 
+	chunk_size = 0;
 	size = ft_lstsize(*b);
 	chunks = (size + chunk_size - 1) / chunk_size;
 	b_to_a(a, b, size - (chunk_size * (chunks - 1)), operations);

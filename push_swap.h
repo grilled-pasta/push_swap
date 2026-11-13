@@ -79,5 +79,10 @@ int 	medium(stack **a, stack **b, stack **operations);
 int 	complex(stack **a, stack **b, stack **operations);
 // benchmark
 void	print_benchmark(args *args, stack *operations);
+// sorter_utils
+void	ft_ranking(stack **a);
+double	ft_sqrt(double n);
+int		ft_is_sorted(stack *a);
+int		ft_find_max(stack *b, int chunk_size);
 
 #endif
