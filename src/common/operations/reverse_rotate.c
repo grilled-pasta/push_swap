@@ -13,13 +13,13 @@
 #include <stdlib.h>
 #include "common.h"
 
-static void	reverse_rotate(t_stack **s)
+static int	reverse_rotate(t_stack **s)
 {
 	t_stack	*s_temp;
 	t_stack	*s_last;
 
 	if (!s || !*s || !(*s)->next)
-		return ;
+		return (0);
 	s_temp = *s;
 	while (s_temp->next->next != NULL)
 		s_temp = s_temp->next;
@@ -27,23 +27,32 @@ static void	reverse_rotate(t_stack **s)
 	s_last->next = *s;
 	s_temp->next = NULL;
 	*s = s_last;
+	return (1);
 }
 
 void	reverse_rotate_a(t_stack **a, t_stack **operations)
 {
-	reverse_rotate(a);
-	add_back(operations, new(rra));
+	if(reverse_rotate(a))
+		add_operation(rra, operations);
 }
 
 void	reverse_rotate_b(t_stack **b, t_stack **operations)
 {
-	reverse_rotate(b);
-	add_back(operations, new(rrb));
+	if(reverse_rotate(b))
+		add_operation(rrb, operations);
 }
 
 void	reverse_rotate_ab(t_stack **a, t_stack **b, t_stack **operations)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
-	add_back(operations, new(rrr));
+	int rra_res;
+	int	rrb_res;
+
+	rra_res = reverse_rotate(a);
+	rrb_res = reverse_rotate(b);
+	if (rra_res && rrb_res)
+		add_operation(rrr, operations);
+	else if (rra_res)
+		add_operation(rra, operations);
+	else if (rrb_res)
+		add_operation(rrb, operations);
 }

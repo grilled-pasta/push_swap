@@ -13,26 +13,27 @@
 #include <stdlib.h>
 #include "common.h"
 
-static void	push(t_stack **s1, t_stack **s2)
+static int	push(t_stack **s1, t_stack **s2)
 {
 	t_stack	*temp;
 
 	if (!s2 || !*s2)
-		return ;
+		return (0);
 	temp = *s2;
 	*s2 = (*s2)->next;
 	temp->next = NULL;
 	add_front(s1, temp);
+	return (1);
 }
 
 void	push_a(t_stack **a, t_stack **b, t_stack **operations)
 {
-	push(a, b);
-	add_back(operations, new(pa));
+	if (push(a, b))
+		add_operation(pa, operations);
 }
 
 void	push_b(t_stack **a, t_stack **b, t_stack **operations)
 {
-	push(b, a);
-	add_back(operations, new(pb));
+	if (push(b, a))
+		add_operation(pb, operations);
 }

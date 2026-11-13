@@ -39,16 +39,17 @@ typedef struct s_stack
 t_stack	*new(int number);
 void	add_front(t_stack **s, t_stack *s_new);
 void	add_back(t_stack **s, t_stack *s_new);
-t_stack	*last(t_stack *s);
 int		ft_lstsize(t_stack *s);
-void	iter(t_stack *s, void (*f)(int number));
+t_stack	*last(t_stack *s);
+void	iter(t_stack *s, void (*f)(int));
 void	clear(t_stack *s);
+int		is_sorted(t_stack *s);
+int		add_operation(t_operation operation, t_stack **operations);
 // utils
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
 int		is_digit(char c);
 int		ft_atoi(const char *nptr);
-int		is_sorted(t_stack *s);
 // parser
 t_stack	*parse_stack(int i, int argc, char **argv);
 // operations

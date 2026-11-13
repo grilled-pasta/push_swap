@@ -20,19 +20,6 @@ t_stack	*last(t_stack *s)
 	return (s);
 }
 
-int	size(t_stack *s)
-{
-	int	size;
-
-	size = 0;
-	while (s)
-	{
-		s = s->next;
-		size++;
-	}
-	return (size);
-}
-
 void	iter(t_stack *s, void (*f)(int))
 {
 	while (s)
@@ -64,4 +51,17 @@ int	is_sorted(t_stack *a)
 		a = a->next;
 	}
 	return (1);
+}
+
+int	add_operation(t_operation operation, t_stack **operations)
+{
+	t_stack	*temp;
+
+	if (!operations)
+		return (-1);
+	temp = new(operation);
+	if (!temp)
+		return (-1);
+	add_back(operations, temp);
+	return (0);
 }

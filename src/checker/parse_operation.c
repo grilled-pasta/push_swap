@@ -13,17 +13,6 @@
 #include <stdlib.h>
 #include "common.h"
 
-static int	add_operation(t_operation operation, t_stack **operations)
-{
-	t_stack	*temp;
-
-	temp = new(operation);
-	if (!temp)
-		return (-1);
-	add_back(operations, temp);
-	return (0);
-}
-
 int	parse_operation(char *s, t_stack **operations)
 {
 	if (ft_strcmp(s, "sa") == 0)

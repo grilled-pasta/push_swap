@@ -12,35 +12,44 @@
 
 #include "common.h"
 
-static void	swap(t_stack **s)
+static int	swap(t_stack **s)
 {
 	t_stack	*s1;
 	t_stack	*s2;
 
 	if (!s || !*s || !(*s)->next)
-		return ;
+		return (0);
 	s1 = *s;
 	s2 = s1->next;
 	s1->next = s2->next;
 	s2->next = s1;
 	*s = s2;
+	return (1);
 }
 
 void	swap_a(t_stack **a, t_stack **operations)
 {
-	swap(a);
-	add_back(operations, new(sa));
+	if (swap(a))
+		add_operation(sa, operations);
 }
 
 void	swap_b(t_stack **b, t_stack **operations)
 {
-	swap(b);
-	add_back(operations, new(sb));
+	if(swap(b))
+		add_operation(sa, operations);
 }
 
 void	swap_ab(t_stack **a, t_stack **b, t_stack **operations)
 {
-	swap(a);
-	swap(b);
-	add_back(operations, new(ss));
+	int	sa_res;
+	int	sb_res;
+
+	sa_res = swap(a);
+	sb_res = swap(b);
+	if (sa_res && sb_res)
+		add_operation(ss, operations);
+	else if (sa_res)
+		add_operation(sa, operations);
+	else if (sb_res)
+		add_operation(sb, operations);
 }
