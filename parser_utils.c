@@ -35,7 +35,7 @@ float	compute_disorder(t_stack *s)
 	return (mistakes / (float) total_pairs);
 }
 
-int		is_number(char *s)
+int	is_number(char *s)
 {
 	if (!s || !*s)
 		return (0);
@@ -50,7 +50,7 @@ int		is_number(char *s)
 	return (1);
 }
 
-int		is_strategy(char *arg)
+int	is_strategy(char *arg)
 {
 	return (ft_strcmp(arg, "--adaptive") == 0
 		|| ft_strcmp(arg, "--simple") == 0
@@ -58,7 +58,7 @@ int		is_strategy(char *arg)
 		|| ft_strcmp(arg, "--complex") == 0);
 }
 
-int		is_unique(t_stack *s, int number)
+int	is_unique(t_stack *s, int number)
 {
 	while (s)
 	{

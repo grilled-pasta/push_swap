@@ -46,7 +46,7 @@ static void	print_strategy(char	*strategy, int adaptive)
 	{
 		s = "Complex";
 		complexity = "𝑛㏒𝑛";
-	}	
+	}
 	if (adaptive)
 		s = "Adaptive";
 	ft_printf_err("%s / O(%s)\n", s, complexity);

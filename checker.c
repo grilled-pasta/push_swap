@@ -101,7 +101,8 @@ int	main(int argc, char **argv)
 	while (line)
 	{
 		if (parse_operation(line, &operations) == -1)
-			return (free(line), clear(operations), ft_printf_err("Error\n"), -1);
+			return (free(line), clear(operations),
+				ft_printf_err("Error\n"), -1);
 		free(line);
 		line = get_next_line(STDIN_FILENO);
 	}

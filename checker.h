@@ -17,25 +17,36 @@
 # include "libftprintf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
 
-typedef enum e_operation {
-	sa, sb, ss, pa, pb, ra, rb ,rr, rra, rrb, rrr
-}		operation;
+typedef enum e_operation
+{
+	sa,
+	sb,
+	ss,
+	pa,
+	pb,
+	ra,
+	rb,
+	rr,
+	rra,
+	rrb,
+	rrr
+}			t_operation;
 
-typedef struct	s_t_stack
+typedef struct s_stack
 {
 	int				number;
 	int				rank;
-	struct s_t_stack	*next;
+	struct s_stack	*next;
 }				t_stack;
 
-typedef struct	s_args
+typedef struct s_args
 {
 	char	*strategy;
-	t_stack	*t_stack;
+	t_stack	*stack;
 	float	disorder;
 	int		benchmark;
 	int		adaptive;
-}				args;
+}				t_args;
 
 // t_stack
 t_stack	*new(int number);
@@ -53,7 +64,7 @@ int		is_digit(char c);
 int		ft_atoi(const char *nptr);
 int		is_sorted(t_stack *s);
 // parser
-args	*parse_args(int argc, char **argv, int has_flags);
+t_args	*parse_args(int argc, char **argv, int has_flags);
 // operations
 void	swap_a(t_stack **a, t_stack **operations);
 void	swap_b(t_stack **b, t_stack **operations);

@@ -13,7 +13,8 @@
 #include "push_swap.h"
 
 //sends the organized chunks with unorganized values from A to B
-void	ft_push_chunk(t_stack **a, t_stack **b, t_stack **operations, t_chunk *chunk)
+void	ft_push_chunk(t_stack **a, t_stack **b, t_stack **operations,
+			t_chunk *chunk)
 {
 	while (chunk->remaining > 0)
 	{
