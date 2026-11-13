@@ -93,7 +93,7 @@ int	medium(t_stack **a, t_stack **b, t_stack **operations)
 	t_chunk	*chunk;
 
 	size = ft_lstsize(*a);
-	chunk = NULL;
+	chunk = malloc(sizeof(t_chunk));
 	if (size == 0)
 		return (1);
 	chunk_size = (int) ft_sqrt(size);
@@ -104,5 +104,5 @@ int	medium(t_stack **a, t_stack **b, t_stack **operations)
 	chunk->count = chunks;
 	a_to_b(a, b, operations, chunk);
 	ft_chunks(a, b, operations, chunk);
-	return (1);
+	return (free(chunk), 1);
 }
