@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 //sends the organized chunks with unorganized values from A to B
-void	ft_push_chunk(stack **a, stack **b, stack **operations, t_chunk *chunk)
+void	ft_push_chunk(t_stack **a, t_stack **b, t_stack **operations, t_chunk *chunk)
 {
 	while (chunk->remaining > 0)
 	{
@@ -28,7 +28,7 @@ void	ft_push_chunk(stack **a, stack **b, stack **operations, t_chunk *chunk)
 	}
 }
 
-void	a_to_b(stack **a, stack **b, int chunk_size, stack **operations)
+void	a_to_b(t_stack **a, t_stack **b, int chunk_size, t_stack **operations)
 {
 	t_chunk	chunk;
 	int		size;
@@ -51,7 +51,7 @@ void	a_to_b(stack **a, stack **b, int chunk_size, stack **operations)
 }
 
 //checks the top chunk on stack B and sends it back to stack A in order
-void	b_to_a(stack **a, stack **b, int chunk_size, stack **operations)
+void	b_to_a(t_stack **a, t_stack **b, int chunk_size, t_stack **operations)
 {
 	int	maxpos;
 	int	i;
@@ -78,8 +78,8 @@ void	b_to_a(stack **a, stack **b, int chunk_size, stack **operations)
 }
 
 //repeats b_to_a for each chunk
-void	ft_chunks(stack **a, stack **b, int chunks,
-			stack **operations)
+void	ft_chunks(t_stack **a, t_stack **b, int chunks,
+			t_stack **operations)
 {
 	int	size;
 	int	chunk_size;
@@ -96,7 +96,7 @@ void	ft_chunks(stack **a, stack **b, int chunks,
 	}
 }
 
-int	medium(stack **a, stack **b, stack **operations)
+int	medium(t_stack **a, t_stack **b, t_stack **operations)
 {
 	int	size;
 	int	chunk_size;

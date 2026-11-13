@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   t_stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-stack	*new(int number)
+t_stack	*new(int number)
 {
-	stack	*s;
+	t_stack	*s;
 
-	s = (stack *) malloc(sizeof(stack));
+	s = (t_stack *) malloc(sizeof(t_stack));
 	if (!s)
 		return (NULL);
 	s->number = number;
@@ -24,16 +24,16 @@ stack	*new(int number)
 	return (s);
 }
 
-void	add_front(stack **s, stack *s_new)
+void	add_front(t_stack **s, t_stack *s_new)
 {
 	if (*s)
 		s_new->next = *s;
 	*s = s_new;
 }
 
-void	add_back(stack **s, stack *s_new)
+void	add_back(t_stack **s, t_stack *s_new)
 {
-	stack	*last_s;
+	t_stack	*last_s;
 
 	if (!s)
 		return ;
@@ -46,7 +46,7 @@ void	add_back(stack **s, stack *s_new)
 		*s = s_new;
 }
 
-int	ft_lstsize(stack *s)
+int	ft_lstsize(t_stack *s)
 {
 	int	size;
 

@@ -42,9 +42,9 @@ static void	put_operations(int number)
 	ft_printf("%s\n", operation);
 }
 
-void	sort(args *args, stack **operations)
+void	sort(t_args *args, t_stack **operations)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	temp = NULL;
 	if (ft_strcmp(args->strategy, "simple") == 0)
@@ -58,8 +58,8 @@ void	sort(args *args, stack **operations)
 
 int	main(int argc, char **argv)
 {
-	args	*args;
-	stack	*operations;
+	t_args	*args;
+	t_stack	*operations;
 
 	if (argc < 2)
 		return (0);

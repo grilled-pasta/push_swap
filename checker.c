@@ -12,9 +12,9 @@
 
 #include "checker.h"
 
-static int	add_operation(operation operation, stack **operations)
+static int	add_operation(operation operation, t_stack **operations)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	temp = new(operation);
 	if (!temp)
@@ -23,7 +23,7 @@ static int	add_operation(operation operation, stack **operations)
 	return (0);
 }
 
-static int	parse_operation(char *s, stack **operations)
+static int	parse_operation(char *s, t_stack **operations)
 {
 	if (ft_strncmp(s, "sa", 2) == 0)
 		return (add_operation(sa, operations));
@@ -50,7 +50,7 @@ static int	parse_operation(char *s, stack **operations)
 	return (-1);
 }
 
-static void	apply(stack **a, stack **b, stack *operations)
+static void	apply(t_stack **a, t_stack **b, t_stack *operations)
 {
 	if (operations->number == sa)
 		swap_a(a, NULL);
@@ -76,7 +76,7 @@ static void	apply(stack **a, stack **b, stack *operations)
 		reverse_rotate_ab(a, b, NULL);
 }
 
-static void	apply_operations(stack **a, stack **b, stack *operations)
+static void	apply_operations(t_stack **a, t_stack **b, t_stack *operations)
 {
 	while (operations)
 	{
@@ -88,12 +88,12 @@ static void	apply_operations(stack **a, stack **b, stack *operations)
 int	main(int argc, char **argv)
 {
 	char	*line;
-	stack	*a;
-	stack	*b;
-	stack	*operations;
+	t_stack	*a;
+	t_stack	*b;
+	t_stack	*operations;
 
 	operations = NULL;
-	a = parse_stack(1, argc, argv);
+	a = parse_t_stack(1, argc, argv);
 	if (a == NULL)
 		return (ft_printf_err("Error\n"), -1);
 	b = NULL;

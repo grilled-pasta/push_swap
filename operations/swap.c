@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-static void	swap(stack **s)
+static void	swap(t_stack **s)
 {
-	stack	*s1;
-	stack	*s2;
+	t_stack	*s1;
+	t_stack	*s2;
 
 	if (!s || !*s || !(*s)->next)
 		return ;
@@ -26,19 +26,19 @@ static void	swap(stack **s)
 	*s = s2;
 }
 
-void	swap_a(stack **a, stack **operations)
+void	swap_a(t_stack **a, t_stack **operations)
 {
 	swap(a);
 	add_back(operations, new(sa));
 }
 
-void	swap_b(stack **b, stack **operations)
+void	swap_b(t_stack **b, t_stack **operations)
 {
 	swap(b);
 	add_back(operations, new(sb));
 }
 
-void	swap_ab(stack **a, stack **b, stack **operations)
+void	swap_ab(t_stack **a, t_stack **b, t_stack **operations)
 {
 	swap(a);
 	swap(b);

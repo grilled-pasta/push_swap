@@ -6,17 +6,17 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 06:41:24 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 06:45:31 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 07:01:03 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-float	compute_disorder(stack *s)
+float	compute_disorder(t_stack *s)
 {
 	int		mistakes;
 	int		total_pairs;
-	stack	*temp;
+	t_stack	*temp;
 
 	mistakes = 0;
 	total_pairs = 0;
@@ -58,7 +58,7 @@ int		is_strategy(char *arg)
 		|| ft_strcmp(arg, "--complex") == 0);
 }
 
-int		is_unique(stack *s, int number)
+int		is_unique(t_stack *s, int number)
 {
 	while (s)
 	{

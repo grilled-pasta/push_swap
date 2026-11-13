@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	operation_count(stack *operations, operation o)
+static int	operation_count(t_stack *operations, t_operation o)
 {
 	int	count;
 
@@ -52,7 +52,7 @@ static void	print_strategy(char	*strategy, int adaptive)
 	ft_printf_err("%s / O(%s)\n", s, complexity);
 }
 
-void	print_benchmark(args *args, stack *operations)
+void	print_benchmark(t_args *args, t_stack *operations)
 {
 	int	integral;
 	int	decimal;

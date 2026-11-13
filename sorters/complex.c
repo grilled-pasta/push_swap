@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	bin_checker(stack **a, stack **b, int bit, stack **operations)
+int	bin_checker(t_stack **a, t_stack **b, int bit, t_stack **operations)
 {
 	int	i;
 	int	to_b;
@@ -35,7 +35,7 @@ int	bin_checker(stack **a, stack **b, int bit, stack **operations)
 	return (to_b);
 }
 
-void	complex_b_to_a(stack **a, stack **b, int to_b, stack **operations)
+void	complex_b_to_a(t_stack **a, t_stack **b, int to_b, t_stack **operations)
 {
 	while (to_b > 0)
 	{
@@ -44,7 +44,7 @@ void	complex_b_to_a(stack **a, stack **b, int to_b, stack **operations)
 	}
 }
 
-int	complex(stack **a, stack **b, stack **operations)
+int	complex(t_stack **a, t_stack **b, t_stack **operations)
 {
 	int	size;
 	int	bit;

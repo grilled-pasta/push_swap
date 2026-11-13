@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   t_stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-stack	*last(stack *s)
+t_stack	*last(t_stack *s)
 {
 	while (s && s->next)
 		s = s->next;
 	return (s);
 }
 
-int	size(stack *s)
+int	size(t_stack *s)
 {
 	int	size;
 
@@ -32,7 +32,7 @@ int	size(stack *s)
 	return (size);
 }
 
-void	iter(stack *s, void (*f)(int))
+void	iter(t_stack *s, void (*f)(int))
 {
 	while (s)
 	{
@@ -41,9 +41,9 @@ void	iter(stack *s, void (*f)(int))
 	}
 }
 
-void	clear(stack *s)
+void	clear(t_stack *s)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	while (s)
 	{
@@ -54,7 +54,7 @@ void	clear(stack *s)
 	free(s);
 }
 
-int	is_sorted(stack *s)
+int	is_sorted(t_stack *s)
 {
 	int	prev;
 

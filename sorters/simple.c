@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-int	ft_ranksearch(stack **a, int rank)
+int	ft_ranksearch(t_stack **a, int rank)
 {
 	int		position;
-	stack	*temp;
+	t_stack	*temp;
 
 	position = 0;
 	temp = *a;
@@ -29,7 +29,7 @@ int	ft_ranksearch(stack **a, int rank)
 	return (-1);
 }
 
-void	ft_move(stack **a, stack **b, stack **operations, int rank)
+void	ft_move(t_stack **a, t_stack **b, t_stack **operations, int rank)
 {
 	int		position;
 	int		size_a;
@@ -55,7 +55,7 @@ void	ft_move(stack **a, stack **b, stack **operations, int rank)
 	push_b (a, b, operations);
 }
 
-void	simple(stack **a, stack **b, stack **operations)
+void	simple(t_stack **a, t_stack **b, t_stack **operations)
 {
 	int	rank;
 	int	size_a;

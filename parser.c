@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	select_adaptive(args *args)
+static void	select_adaptive(t_args *args)
 {
 	if (args->disorder <= 0.2 || ft_lstsize(args->stack) <= 5)
 		args->strategy = "simple";
@@ -22,7 +22,7 @@ static void	select_adaptive(args *args)
 		args->strategy = "complex";
 }
 
-int	parse_flags(int argc, char **argv, args **args)
+int	parse_flags(int argc, char **argv, t_args **args)
 {
 	int	i;
 
@@ -42,10 +42,10 @@ int	parse_flags(int argc, char **argv, args **args)
 	return (i);
 }
 
-stack	*parse_stack(int i, int argc, char **argv)
+t_stack	*parse_stack(int i, int argc, char **argv)
 {
-	stack	*s;
-	stack	*temp_s;
+	t_stack	*s;
+	t_stack	*temp_s;
 	int		temp_i;
 
 	s = NULL;
@@ -66,13 +66,13 @@ stack	*parse_stack(int i, int argc, char **argv)
 	return (s);
 }
 
-args	*parse_args(int argc, char **argv, int has_flags)
+t_args	*parse_args(int argc, char **argv, int has_flags)
 {
-	args	*args_parsed;
+	t_args	*args_parsed;
 	int		i;
 
 	i = 1;
-	args_parsed = malloc(sizeof(args));
+	args_parsed = malloc(sizeof(t_args));
 	if (!args_parsed || argc == 1)
 		return (free(args_parsed), NULL);
 	args_parsed->adaptive = 1;

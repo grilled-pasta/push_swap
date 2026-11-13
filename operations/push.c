@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-static void	push(stack **s1, stack **s2)
+static void	push(t_stack **s1, t_stack **s2)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	if (!s2 || !*s2)
 		return ;
@@ -24,13 +24,13 @@ static void	push(stack **s1, stack **s2)
 	add_front(s1, temp);
 }
 
-void	push_a(stack **a, stack **b, stack **operations)
+void	push_a(t_stack **a, t_stack **b, t_stack **operations)
 {
 	push(a, b);
 	add_back(operations, new(pa));
 }
 
-void	push_b(stack **a, stack **b, stack **operations)
+void	push_b(t_stack **a, t_stack **b, t_stack **operations)
 {
 	push(b, a);
 	add_back(operations, new(pb));

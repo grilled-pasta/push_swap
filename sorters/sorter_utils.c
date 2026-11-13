@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void	ft_ranking(stack **a)
+void	ft_ranking(t_stack **a)
 {
-	stack	*current;
-	stack	*temp;
+	t_stack	*current;
+	t_stack	*temp;
 
 	current = *a;
 	temp = *a;
@@ -56,7 +56,7 @@ double	ft_sqrt(double n)
 }
 
 //This one goes in the function that decides what algorithm is better
-int	ft_is_sorted(stack *a)
+int	ft_is_sorted(t_stack *a)
 {
 	while (a && a->next)
 	{
@@ -68,12 +68,12 @@ int	ft_is_sorted(stack *a)
 }
 
 //checks each chunk and looks where is the max value located.
-int	ft_find_max(stack *b, int chunk_size)
+int	ft_find_max(t_stack *b, int chunk_size)
 {
 	int		max;
 	int		i;
 	int		maxpos;
-	stack	*temp;
+	t_stack	*temp;
 
 	if (!b || chunk_size <= 0)
 		return (-1);
