@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 	line = get_next_line(STDIN_FILENO);
 	while (line)
 	{
+		line[ft_strlen(line) - 1] = '\0';
 		if (parse_operation(line, &operations) == -1)
 			return (free(line), clear(operations),
 				ft_printf_err("Error\n"), -1);

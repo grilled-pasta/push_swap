@@ -75,6 +75,8 @@ static int	parse_flags(int argc, char **argv, t_args **args)
 			if (ft_strcmp((*args)->strategy, "adaptive") != 0)
 				(*args)->adaptive = 0;
 		}
+		else
+			return (-1);
 		i++;
 	}
 	return (i);

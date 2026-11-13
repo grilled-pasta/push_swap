@@ -26,27 +26,27 @@ static int	add_operation(t_operation operation, t_stack **operations)
 
 int	parse_operation(char *s, t_stack **operations)
 {
-	if (ft_strncmp(s, "sa", 2) == 0)
+	if (ft_strcmp(s, "sa") == 0)
 		return (add_operation(sa, operations));
-	else if (ft_strncmp(s, "sb", 2) == 0)
+	else if (ft_strcmp(s, "sb") == 0)
 		return (add_operation(sb, operations));
-	else if (ft_strncmp(s, "ss", 2) == 0)
+	else if (ft_strcmp(s, "ss") == 0)
 		return (add_operation(ss, operations));
-	else if (ft_strncmp(s, "pa", 2) == 0)
+	else if (ft_strcmp(s, "pa") == 0)
 		return (add_operation(pa, operations));
-	else if (ft_strncmp(s, "pb", 2) == 0)
+	else if (ft_strcmp(s, "pb") == 0)
 		return (add_operation(pb, operations));
-	else if (ft_strncmp(s, "ra", 2) == 0)
+	else if (ft_strcmp(s, "ra") == 0)
 		return (add_operation(ra, operations));
-	else if (ft_strncmp(s, "rb", 2) == 0)
+	else if (ft_strcmp(s, "rb") == 0)
 		return (add_operation(rb, operations));
-	else if (ft_strncmp(s, "rr", 2) == 0)
+	else if (ft_strcmp(s, "rr") == 0)
 		return (add_operation(rr, operations));
-	else if (ft_strncmp(s, "rra", 3) == 0)
+	else if (ft_strcmp(s, "rra") == 0)
 		return (add_operation(rra, operations));
-	else if (ft_strncmp(s, "rrb", 3) == 0)
+	else if (ft_strcmp(s, "rrb") == 0)
 		return (add_operation(rrb, operations));
-	else if (ft_strncmp(s, "rrr", 3) == 0)
+	else if (ft_strcmp(s, "rrr") == 0)
 		return (add_operation(rrr, operations));
 	return (-1);
 }
