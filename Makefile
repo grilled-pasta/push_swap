@@ -56,10 +56,10 @@ OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 $(BONUS_OBJS): CPPFLAGS += $(BONUS_CPPFLAGS)
 
-all: $(NAME)
-
 $(NAME): $(OBJS) $(COMMON_OBJS) $(PRINTF)
 	$(CC) $(CFLAGS) $^ -o $@
+
+all: $(NAME) $(BONUS_NAME)
 
 bonus: $(BONUS_NAME)
 
@@ -86,4 +86,3 @@ re_bonus:	fclean
 			$(MAKE) bonus
 
 .PHONY: all bonus clean fclean re re_bonus
-.DEFAULT_GOAL := all
