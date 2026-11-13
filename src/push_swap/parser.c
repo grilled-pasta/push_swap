@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include "push_swap.h"
+#include "ft_printf.h"
 
 static float	compute_disorder(t_stack *s)
 {
@@ -96,9 +97,11 @@ t_args	*parse_args(int argc, char **argv)
 	i = parse_flags(argc, argv, &args);
 	if (i == -1)
 		return (free(args), NULL);
+	if (i == argc && i > 0)
+		return (args);
 	args->stack = parse_stack(i, argc, argv);
 	if (!args->stack)
-		return (args);
+		return (free(args), NULL);
 	ft_ranking(&args->stack);
 	args->disorder = compute_disorder(args->stack);
 	if (args->adaptive)
