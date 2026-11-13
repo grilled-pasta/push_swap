@@ -99,6 +99,7 @@ t_args	*parse_args(int argc, char **argv)
 	args->stack = parse_stack(i, argc, argv);
 	if (!args->stack)
 		return (free(args), NULL);
+	ft_ranking(&args->stack);
 	args->disorder = compute_disorder(args->stack);
 	if (args->adaptive)
 		select_adaptive(args);

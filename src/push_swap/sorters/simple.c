@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "common.h"
 #include "push_swap.h"
 
-int		ft_position(t_stack *a, int rank)
+static int	ft_position(t_stack *a, int rank)
 {
 	int	position;
 
@@ -27,22 +28,14 @@ int		ft_position(t_stack *a, int rank)
 	return (-1);
 }
 
-void	simple(t_stack **a, t_stack **b, t_stack **operations)
+static void	sort(t_stack **a, t_stack **b, t_stack **operations)
 {
 	int		rank;
 	int		size;
 	int		position;
 
-	if (!a || !*a || !b)
-		return ;
-	ft_ranking(a);
-	size = ft_lstsize(*a);
-	if (size == 2)
-	{
-		swap_a(a, operations);
-		return ;
-	}
 	rank = 0;
+	size = ft_lstsize(*a);
 	while (*a && rank < size -1)
 	{
 		position = ft_position(*a, rank);
@@ -60,4 +53,14 @@ void	simple(t_stack **a, t_stack **b, t_stack **operations)
 	}
 	while (*b)
 		push_a(a, b, operations);
+}
+
+void	simple(t_stack **a, t_stack **b, t_stack **operations)
+{
+	if (!a || !*a || !b)
+		return ;
+	if (ft_lstsize(*a) > 2)
+		sort(a, b, operations);
+	else
+		swap_a(a, operations);
 }
