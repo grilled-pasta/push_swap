@@ -13,38 +13,46 @@
 NAME = push_swap
 BONUS_NAME = checker
 
+SRC_DIR = src
+COMMON_DIR = $(SRC_DIR)/common
+PUSH_SWAP_DIR = $(SRC_DIR)/push_swap
+CHECKER_DIR = $(SRC_DIR)/checker
+
 PRINTF_DIR = libftprintf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I. -I$(PRINTF_DIR)
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CPPFLAGS = -Iinclude -I$(PRINTF_DIR)
+BONUS_CPPFLAGS = -I$(CHECKER_DIR)/get_next_line
 
-BONUS_SRCS = get_next_line/get_next_line.c \
-	     get_next_line/get_next_line_utils.c \
-	     checker.c
+COMMON_FILES = stack.c \
+	       stack_utils.c \
+	       operations/push.c \
+	       operations/swap.c \
+	       operations/rotate.c \
+	       operations/reverse_rotate.c \
+	       utils.c \
+	       parse_stack.c
+COMMON_SRCS = $(addprefix $(COMMON_DIR)/,$(COMMON_FILES))
 
-COMMON_SRCS = stack.c \
-	      stack_utils.c \
-	      operations/push.c \
-	      operations/swap.c \
-	      operations/rotate.c \
-	      operations/reverse_rotate.c \
-	      utils.c \
-	      parser.c \
-	      parser_utils.c
+FILES = push_swap.c \
+	parser.c \
+	sorters/simple.c \
+	sorters/medium.c \
+	sorters/complex.c \
+	sorters/sorter_utils.c \
+	benchmark.c
+SRCS = $(addprefix $(PUSH_SWAP_DIR)/,$(FILES))
 
+BONUS_FILES = get_next_line/get_next_line.c \
+	      get_next_line/get_next_line_utils.c \
+	      checker.c
+BONUS_SRCS = $(addprefix $(CHECKER_DIR)/,$(BONUS_FILES))
 
-SRCS = push_swap.c \
-       sorters/simple.c \
-       sorters/medium.c \
-       sorters/complex.c \
-       sorters/sorter_utils.c \
-       benchmark.c
-
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 COMMON_OBJS = $(COMMON_SRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 DEPS =	$(OBJS:.o=.d) \
 	$(COMMON_OBJS:.o=.d) \
@@ -60,7 +68,7 @@ $(NAME): $(OBJS) $(COMMON_OBJS) $(PRINTF)
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJS) $(COMMON_OBJS) $(PRINTF)
-	$(CC) $(CFLAGS) $^ -o $(BONUS_NAME)
+	$(CC) $(CFLAGS) $(BONUS_CPPFLAGS) $^ -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -78,4 +86,8 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: all bonus clean fclean re
+re_bonus:	fclean
+		$(MAKE) bonus
+
+.PHONY: all bonus clean fclean re re_bonus
+.DEFAULT_GOAL := all

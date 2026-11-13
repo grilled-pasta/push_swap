@@ -1,2 +1,5 @@
 CompileFlags:
-  Add: [-I.]
+  Add:
+    - -Iinclude
+    - -Ilibftprintf
+    - -Isrc/checker/get_next_line

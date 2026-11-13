@@ -1,41 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   parse_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/13 06:41:24 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 07:01:03 by alkonsta         ###   ########.fr       */
+/*   Created: 2026/11/13 08:31:53 by alkonsta          #+#    #+#             */
+/*   Updated: 2026/11/13 08:46:26 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "common.h"
 
-float	compute_disorder(t_stack *s)
-{
-	int		mistakes;
-	int		total_pairs;
-	t_stack	*temp;
-
-	mistakes = 0;
-	total_pairs = 0;
-	while (s && s->next)
-	{
-		temp = s->next;
-		while (temp)
-		{
-			total_pairs += 1;
-			if (s->number > temp->number)
-				mistakes += 1;
-			temp = temp->next;
-		}
-		s = s->next;
-	}
-	return (mistakes / (float) total_pairs);
-}
-
-int	is_number(char *s)
+static int	is_number(char *s)
 {
 	if (!s || !*s)
 		return (0);
@@ -50,15 +27,7 @@ int	is_number(char *s)
 	return (1);
 }
 
-int	is_strategy(char *arg)
-{
-	return (ft_strcmp(arg, "--adaptive") == 0
-		|| ft_strcmp(arg, "--simple") == 0
-		|| ft_strcmp(arg, "--medium") == 0
-		|| ft_strcmp(arg, "--complex") == 0);
-}
-
-int	is_unique(t_stack *s, int number)
+static int	is_unique(t_stack *s, int number)
 {
 	while (s)
 	{
@@ -67,4 +36,28 @@ int	is_unique(t_stack *s, int number)
 		s = s->next;
 	}
 	return (1);
+}
+
+t_stack	*parse_stack(int i, int argc, char **argv)
+{
+	t_stack	*s;
+	t_stack	*temp_s;
+	int		temp_i;
+
+	s = NULL;
+	while (i < argc)
+	{
+		if (!is_number(argv[i]))
+			return (clear(s), NULL);
+		temp_i = ft_atoi(argv[i]);
+		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
+			|| !is_unique(s, temp_i))
+			return (clear(s), NULL);
+		temp_s = new(temp_i);
+		if (!temp_s)
+			return (clear(s), clear(temp_s), NULL);
+		add_back(&s, temp_s);
+		i++;
+	}
+	return (s);
 }

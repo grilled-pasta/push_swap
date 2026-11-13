@@ -6,11 +6,42 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:56:39 by alla              #+#    #+#             */
-/*   Updated: 2026/11/13 06:54:32 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 08:54:56 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static float	compute_disorder(t_stack *s)
+{
+	int		mistakes;
+	int		total_pairs;
+	t_stack	*temp;
+
+	mistakes = 0;
+	total_pairs = 0;
+	while (s && s->next)
+	{
+		temp = s->next;
+		while (temp)
+		{
+			total_pairs += 1;
+			if (s->number > temp->number)
+				mistakes += 1;
+			temp = temp->next;
+		}
+		s = s->next;
+	}
+	return (mistakes / (float) total_pairs);
+}
+
+static int	is_strategy(char *arg)
+{
+	return (ft_strcmp(arg, "--adaptive") == 0
+		|| ft_strcmp(arg, "--simple") == 0
+		|| ft_strcmp(arg, "--medium") == 0
+		|| ft_strcmp(arg, "--complex") == 0);
+}
 
 static void	select_adaptive(t_args *args)
 {
@@ -22,7 +53,7 @@ static void	select_adaptive(t_args *args)
 		args->strategy = "complex";
 }
 
-int	parse_flags(int argc, char **argv, t_args **args)
+static int	parse_flags(int argc, char **argv, t_args **args)
 {
 	int	i;
 
@@ -42,48 +73,23 @@ int	parse_flags(int argc, char **argv, t_args **args)
 	return (i);
 }
 
-t_stack	*parse_stack(int i, int argc, char **argv)
+t_args	*parse_args(int argc, char **argv)
 {
-	t_stack	*s;
-	t_stack	*temp_s;
-	int		temp_i;
-
-	s = NULL;
-	while (i < argc)
-	{
-		if (!is_number(argv[i]))
-			return (clear(s), NULL);
-		temp_i = ft_atoi(argv[i]);
-		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
-			|| !is_unique(s, temp_i))
-			return (clear(s), NULL);
-		temp_s = new(temp_i);
-		if (!temp_s)
-			return (clear(s), clear(temp_s), NULL);
-		add_back(&s, temp_s);
-		i++;
-	}
-	return (s);
-}
-
-t_args	*parse_args(int argc, char **argv, int has_flags)
-{
-	t_args	*args_parsed;
+	t_args	*args;
 	int		i;
 
 	i = 1;
-	args_parsed = malloc(sizeof(t_args));
-	if (!args_parsed || argc == 1)
-		return (free(args_parsed), NULL);
-	args_parsed->adaptive = 1;
-	args_parsed->benchmark = 0;
-	if (has_flags)
-		i = parse_flags(argc, argv, &args_parsed);
-	args_parsed->stack = parse_stack(i, argc, argv);
-	if (!args_parsed->stack)
-		return (free(args_parsed), NULL);
-	args_parsed->disorder = compute_disorder(args_parsed->stack);
-	if (args_parsed->adaptive)
-		select_adaptive(args_parsed);
-	return (args_parsed);
+	args = malloc(sizeof(t_args));
+	if (!args || argc == 1)
+		return (free(args), NULL);
+	args->adaptive = 1;
+	args->benchmark = 0;
+	i = parse_flags(argc, argv, &args);
+	args->stack = parse_stack(i, argc, argv);
+	if (!args->stack)
+		return (free(args), NULL);
+	args->disorder = compute_disorder(args->stack);
+	if (args->adaptive)
+		select_adaptive(args);
+	return (args);
 }
