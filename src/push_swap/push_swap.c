@@ -69,6 +69,8 @@ int	main(int argc, char **argv)
 	operations = NULL;
 	if (args == NULL)
 		return (ft_printf_err("Error\n"), -1);
+	else if (args->stack == NULL)
+		return (free(args), 0);
 	if (!is_sorted(args->stack))
 	{
 		sort(args, &operations);

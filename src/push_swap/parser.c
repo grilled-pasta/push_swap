@@ -46,7 +46,7 @@ static int	is_strategy(char *arg)
 
 static void	select_adaptive(t_args *args)
 {
-	if (args->disorder <= 0.2 || ft_lstsize(args->stack) <= 5)
+	if (args->disorder < 0.2 || ft_lstsize(args->stack) <= 5)
 		args->strategy = "simple";
 	else if (args->disorder <= 0.5)
 		args->strategy = "medium";
@@ -98,7 +98,7 @@ t_args	*parse_args(int argc, char **argv)
 		return (free(args), NULL);
 	args->stack = parse_stack(i, argc, argv);
 	if (!args->stack)
-		return (free(args), NULL);
+		return (args);
 	ft_ranking(&args->stack);
 	args->disorder = compute_disorder(args->stack);
 	if (args->adaptive)
