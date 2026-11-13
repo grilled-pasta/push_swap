@@ -6,66 +6,11 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:56:39 by alla              #+#    #+#             */
-/*   Updated: 2026/11/13 04:17:29 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 06:54:32 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-float	compute_disorder(stack *s)
-{
-	int		mistakes;
-	int		total_pairs;
-	stack	*temp;
-
-	mistakes = 0;
-	total_pairs = 0;
-	while (s && s->next)
-	{
-		temp = s->next;
-		while (temp)
-		{
-			total_pairs += 1;
-			if (s->number > temp->number)
-				mistakes += 1;
-			temp = temp->next;
-		}
-		s = s->next;
-	}
-	return (mistakes / (float) total_pairs);
-}
-
-static int	is_unique(stack *s, int number)
-{
-	while (s)
-	{
-		if (s->number == number)
-			return (0);
-		s = s->next;
-	}
-	return (1);
-}
-
-static int	is_strategy(char *arg)
-{
-	return (ft_strcmp(arg, "--adaptive") == 0 || ft_strcmp(arg, "--simple") == 0 
-			|| ft_strcmp(arg, "--medium") == 0 || ft_strcmp(arg, "--complex") == 0);
-}
-
-static int	is_number(char *s)
-{
-	if (!s || !*s) 
-		return (0);
-	if (*s == '-')
-		s++;
-	while (*s)
-	{
-		if (!is_digit(*s))
-			return (0);
-		s++;
-	}
-	return (1);
-}
 
 static void	select_adaptive(args *args)
 {
@@ -77,48 +22,66 @@ static void	select_adaptive(args *args)
 		args->strategy = "complex";
 }
 
+int	parse_flags(int argc, char **argv, args **args)
+{
+	int	i;
+
+	i = 1;
+	if (ft_strcmp(argv[i], "--bench") == 0)
+	{
+		(*args)->benchmark = 1;
+		i++;
+	}
+	if (i < argc && is_strategy(argv[i]))
+	{
+		(*args)->strategy = argv[i] + 2;
+		if (ft_strcmp((*args)->strategy, "adaptive") != 0)
+			(*args)->adaptive = 0;
+		i++;
+	}
+	return (i);
+}
+
+stack	*parse_stack(int i, int argc, char **argv)
+{
+	stack	*s;
+	stack	*temp_s;
+	int		temp_i;
+
+	s = NULL;
+	while (i < argc)
+	{
+		if (!is_number(argv[i]))
+			return (clear(s), NULL);
+		temp_i = ft_atoi(argv[i]);
+		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
+			|| !is_unique(s, temp_i))
+			return (clear(s), NULL);
+		temp_s = new(temp_i);
+		if (!temp_s)
+			return (clear(s), clear(temp_s), NULL);
+		add_back(&s, temp_s);
+		i++;
+	}
+	return (s);
+}
+
 args	*parse_args(int argc, char **argv, int has_flags)
 {
 	args	*args_parsed;
-	stack	*s;
-	stack	*temp_s;
 	int		i;
-	int		temp_i;
 
 	i = 1;
 	args_parsed = malloc(sizeof(args));
-	s = NULL;
 	if (!args_parsed || argc == 1)
 		return (free(args_parsed), NULL);
 	args_parsed->adaptive = 1;
 	args_parsed->benchmark = 0;
-	if (has_flags && ft_strcmp(argv[i], "--bench") == 0)
-	{
-		args_parsed->benchmark = 1;
-		i++;
-	}
-	if (has_flags && i < argc && is_strategy(argv[i]))
-	{
-		args_parsed->strategy = argv[i] + 2;
-		if (ft_strcmp(args_parsed->strategy, "adaptive") != 0)
-			args_parsed->adaptive = 0;
-		i++;
-	}
-	while (i < argc)
-	{
-		if (!is_number(argv[i])) 
-			return (clear(s), free(args_parsed), NULL);
-		temp_i = ft_atoi(argv[i]);
-		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
-				|| !is_unique(s, temp_i))
-			return (clear(s), free(args_parsed), NULL);
-		temp_s = new(temp_i);
-		if (!temp_s)
-			return (clear(s), clear(temp_s), free(args_parsed), NULL);
-		add_back(&s, temp_s);
-		i++;
-	}
-	args_parsed->stack = s;
+	if (has_flags)
+		i = parse_flags(argc, argv, &args_parsed);
+	args_parsed->stack = parse_stack(i, argc, argv);
+	if (!args_parsed->stack)
+		return (free(args_parsed), NULL);
 	args_parsed->disorder = compute_disorder(args_parsed->stack);
 	if (args_parsed->adaptive)
 		select_adaptive(args_parsed);

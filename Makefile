@@ -31,7 +31,8 @@ COMMON_SRCS = stack.c \
 	      operations/rotate.c \
 	      operations/reverse_rotate.c \
 	      utils.c \
-	      parser.c
+	      parser.c \
+	      parser_utils.c
 
 
 SRCS = push_swap.c \

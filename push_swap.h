@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 04:14:38 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 06:45:20 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int		ft_lstsize(stack *s);
 void	iter(stack *s, void (*f)(int number));
 void	clear(stack *s);
 // utils
-float	compute_disorder(stack *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
 int		is_digit(char c);
@@ -83,5 +82,10 @@ void	ft_ranking(stack **a);
 double	ft_sqrt(double n);
 int		ft_is_sorted(stack *a);
 int		ft_find_max(stack *b, int chunk_size);
+// parser_utils
+float	compute_disorder(stack *s);
+int		is_number(char *s);
+int		is_strategy(char *arg);
+int		is_unique(stack *s, int number);
 
 #endif
