@@ -17,7 +17,8 @@ static int	operation_count(stack *operations, operation o)
 	int	count;
 
 	count = 0;
-	while (operations) {
+	while (operations)
+	{
 		if (operations->number == (int) o)
 			count++;
 		operations = operations->next;
@@ -31,26 +32,23 @@ static void	print_strategy(char	*strategy, int adaptive)
 	char	*complexity;
 
 	complexity = NULL;
-	if (adaptive)
-		s = "Adaptive";
 	if (ft_strcmp(strategy, "simple") == 0)
 	{
-		if (!adaptive)
-			s = "Simple";
-		complexity = "\U0001D45B\U000000B2";
-	} 
+		s = "Simple";
+		complexity = "𝑛²";
+	}
 	else if (ft_strcmp(strategy, "medium") == 0)
 	{
-		if (!adaptive)
-			s = "Medium";
-		complexity = "\U0001D45B\U0000221A\U0001D45B";
+		s = "Medium";
+		complexity = "𝑛√𝑛";
 	}
 	else if (ft_strcmp(strategy, "complex") == 0)
-	{		
-		if (!adaptive)
-			s = "Complex";
-		complexity = "\U0001D45B\U000033D2\U0001D45B";
-	}
+	{
+		s = "Complex";
+		complexity = "𝑛㏒𝑛";
+	}	
+	if (adaptive)
+		s = "Adaptive";
 	ft_printf_err("%s / O(%s)\n", s, complexity);
 }
 
@@ -59,8 +57,8 @@ void	print_benchmark(args *args, stack *operations)
 	int	integral;
 	int	decimal;
 
-	integral = (int) (args->disorder * 100);
-	decimal = (int) ((args->disorder * 100 - integral) * 100);
+	integral = (int)(args->disorder * 100);
+	decimal = (int)((args->disorder * 100 - integral) * 100);
 	ft_printf_err("[bench] disorder:  %d.%d%%\n", integral, decimal);
 	ft_printf_err("[bench] strategy:  ");
 	print_strategy(args->strategy, args->adaptive);
@@ -70,7 +68,7 @@ void	print_benchmark(args *args, stack *operations)
 	ft_printf_err("sb:  %d  ", operation_count(operations, sb));
 	ft_printf_err("ss:  %d  ", operation_count(operations, ss));
 	ft_printf_err("pa:  %d  ", operation_count(operations, pa));
-	ft_printf_err("pb:  %d\n", operation_count(operations, pb));	
+	ft_printf_err("pb:  %d\n", operation_count(operations, pb));
 	ft_printf_err("[bench] ");
 	ft_printf_err("ra:  %d  ", operation_count(operations, ra));
 	ft_printf_err("rb:  %d  ", operation_count(operations, rb));

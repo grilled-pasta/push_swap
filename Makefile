@@ -45,22 +45,30 @@ BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 COMMON_OBJS = $(COMMON_SRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)
 
+DEPS =	$(OBJS:.o=.d) \
+	$(COMMON_OBJS:.o=.d) \
+	$(BONUS_OBJS:.o=.d)
+
+-include $(DEPS)
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(COMMON_OBJS) $(PRINTF)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.c push_swap.h
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(BONUS_OBJS) $(COMMON_OBJS) $(PRINTF)
+	$(CC) $(CFLAGS) $^ -o $(BONUS_NAME)
+
+%.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
-bonus: $(BONUS_OBJS) $(COMMON_OBJS) $(PRINTF)
-	$(CC) $(CFLAGS) $^ -o $(BONUS_NAME)
-
 clean:
-	rm -f $(OBJS) $(COMMON_OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS) $(COMMON_OBJS) $(BONUS_OBJS) $(DEPS)
 	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
