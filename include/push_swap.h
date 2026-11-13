@@ -27,8 +27,7 @@ typedef struct s_args
 typedef struct s_chunk
 {
 	int	size;
-	int	index;
-	int	remaining;
+	int	count;
 }	t_chunk;
 
 // parser

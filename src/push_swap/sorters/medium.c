@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "push_swap.h"
 
 //sends the organized chunks with unorganized values from A to B
-void	a_to_b(t_stack **a, t_stack **b, int chunk_size, int chunks,
-		t_stack **operations)
+void	a_to_b(t_stack **a, t_stack **b, t_stack **operations, t_chunk *chunk)
 {
 	int	temp;
 	int	i;
@@ -22,28 +22,28 @@ void	a_to_b(t_stack **a, t_stack **b, int chunk_size, int chunks,
 
 	size = ft_lstsize(*a);
 	i = 0;
-	temp = chunk_size;
-	while (i < chunks)
+	temp = chunk->size;
+	while (i < chunk->count)
 	{
-		if (i + 2 > chunks)
-			chunk_size = size - (chunk_size * (chunks - 1));
-		while (chunk_size > 0)
+		if (i + 2 > chunk->count)
+			chunk->size = size - (chunk->size * (chunk->count - 1));
+		while (chunk->size > 0)
 		{
 			if ((*a)->rank >= temp * i && (*a)->rank < (i + 1) * temp)
 			{
 				push_b(a, b, operations);
-				chunk_size--;
+				chunk->size--;
 			}
 			else
 				rotate_a(a, operations);
 		}
-		chunk_size = temp;
+		chunk->size = temp;
 		i++;
 	}
 }
 
 //checks the top chunk on t_stack B and sends it back to t_stack A in order
-void	b_to_a(t_stack **a, t_stack **b, int chunk_size, t_stack **operations)
+void	b_to_a(t_stack **a, t_stack **b, t_stack **operations, int chunk_size)
 {
 	int	maxpos;
 	int	i;
@@ -70,35 +70,39 @@ void	b_to_a(t_stack **a, t_stack **b, int chunk_size, t_stack **operations)
 }
 
 //repeats b_to_a for each chunk
-void	ft_chunks(t_stack **a, t_stack **b, int chunk_size, int chunks,
-		t_stack **operations)
+void	ft_chunks(t_stack **a, t_stack **b, t_stack **operations,
+		t_chunk *chunk)
 {
 	int	size;
 
 	size = ft_lstsize(*b);
-	b_to_a(a, b, size - (chunk_size * (chunks - 1)), operations);
-	chunks--;
-	while (chunks > 0)
+	b_to_a(a, b, operations, size - (chunk->size * (chunk->count - 1)));
+	chunk->count--;
+	while (chunk->count > 0)
 	{
-		b_to_a(a, b, chunk_size, operations);
-		chunks--;
+		b_to_a(a, b, operations, chunk->size);
+		chunk->count--;
 	}
 }
 
 int	medium(t_stack **a, t_stack **b, t_stack **operations)
 {
-	int	size;
-	int	chunk_size;
-	int	chunks;
+	int		size;
+	int		chunk_size;
+	int		chunks;
+	t_chunk	*chunk;
 
 	size = ft_lstsize(*a);
+	chunk = NULL;
 	if (size == 0)
 		return (1);
 	chunk_size = (int) ft_sqrt(size);
 	if (chunk_size * chunk_size < size)
 		chunk_size++;
+	chunk->size = chunk_size;
 	chunks = (size + chunk_size - 1) / chunk_size;
-	a_to_b(a, b, chunk_size, chunks, operations);
-	ft_chunks(a, b, chunk_size, chunks, operations);
+	chunk->count = chunks;
+	a_to_b(a, b, operations, chunk);
+	ft_chunks(a, b, operations, chunk);
 	return (1);
 }
