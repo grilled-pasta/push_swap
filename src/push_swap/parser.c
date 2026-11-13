@@ -12,7 +12,6 @@
 
 #include <stdlib.h>
 #include "push_swap.h"
-#include "ft_printf.h"
 
 static float	compute_disorder(t_stack *s)
 {
@@ -34,6 +33,8 @@ static float	compute_disorder(t_stack *s)
 		}
 		s = s->next;
 	}
+	if (total_pairs == 0)
+		return (0);
 	return (mistakes / (float) total_pairs);
 }
 
