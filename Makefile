@@ -23,7 +23,6 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-DEPFLAGS = -MMD -MP
 CPPFLAGS = -Iinclude -I$(PRINTF_DIR)
 BONUS_CPPFLAGS = -I$(CHECKER_DIR)/get_next_line
 
@@ -57,12 +56,6 @@ OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 $(BONUS_OBJS): CPPFLAGS += $(BONUS_CPPFLAGS)
 
-DEPS =	$(OBJS:.o=.d) \
-	$(COMMON_OBJS:.o=.d) \
-	$(BONUS_OBJS:.o=.d)
-
--include $(DEPS)
-
 all: $(NAME)
 
 $(NAME): $(OBJS) $(COMMON_OBJS) $(PRINTF)
@@ -74,23 +67,23 @@ $(BONUS_NAME): $(BONUS_OBJS) $(COMMON_OBJS) $(PRINTF)
 	$(CC) $(CFLAGS) $(BONUS_CPPFLAGS) $^ -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
 clean:
-	rm -f $(OBJS) $(COMMON_OBJS) $(BONUS_OBJS) $(DEPS)
+	rm -f $(OBJS) $(COMMON_OBJS) $(BONUS_OBJS)
 	$(MAKE) -C $(PRINTF_DIR) clean
 
-fclean: clean
+fclean:	clean
 	rm -f $(NAME) $(BONUS_NAME)
 	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re:	fclean all
 
 re_bonus:	fclean
-		$(MAKE) bonus
+			$(MAKE) bonus
 
 .PHONY: all bonus clean fclean re re_bonus
 .DEFAULT_GOAL := all

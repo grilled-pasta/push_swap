@@ -3,73 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 00:58:51 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/09 22:24:48 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/03 17:45:56 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_ranksearch(t_stack **a, int rank)
+int		ft_position(t_stack *a, int rank)
 {
-	int		position;
-	t_stack	*temp;
+	int	position;
 
 	position = 0;
-	temp = *a;
-	while (temp)
+	while (a)
 	{
-		if (temp->rank == rank)
+		if (a->rank == rank)
 			return (position);
+		a = a->next;
 		position++;
-		temp = temp->next;
 	}
 	return (-1);
 }
 
-void	ft_move(t_stack **a, t_stack **b, t_stack **operations, int rank)
-{
-	int		position;
-	int		size_a;
-
-	size_a = ft_lstsize (*a);
-	position = ft_ranksearch (a, rank);
-	if (position <= size_a / 2)
-	{
-		while (position > 0)
-		{
-			rotate_a (a, operations);
-			position--;
-		}
-	}
-	else
-	{
-		while (size_a - position > 0)
-		{
-			reverse_rotate_a (a, operations);
-			position++;
-		}
-	}
-	push_b (a, b, operations);
-}
-
 void	simple(t_stack **a, t_stack **b, t_stack **operations)
 {
-	int	rank;
-	int	size_a;
+	int		rank;
+	int		size;
+	int		position;
 
-	rank = 0;
-	size_a = ft_lstsize(*a);
+	if (!a || !*a || !b)
+		return ;
 	ft_ranking(a);
-	while (rank < size_a)
+	size = ft_lstsize(*a);
+	if (size == 2)
 	{
-		ft_move(a, b, operations, rank);
+		swap_a(a, operations);
+		return ;
+	}
+	rank = 0;
+	while (*a && rank < size -1)
+	{
+		position = ft_position(*a, rank);
+		while ((*a)->rank != rank)
+		{
+			if (position < (size - 1) / 2)
+				rotate_a(a, operations);
+			else
+				reverse_rotate_a(a, operations);
+		}
+		if (is_sorted(*a))
+			break ;
+		push_b(a, b, operations);
 		rank++;
 	}
 	while (*b)
-	{
 		push_a(a, b, operations);
-	}
 }
