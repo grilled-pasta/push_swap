@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 02:56:03 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 06:28:22 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 06:58:49 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,28 +87,28 @@ static void	apply_operations(stack **a, stack **b, stack *operations)
 
 int	main(int argc, char **argv)
 {
-	args	*args;
 	char	*line;
+	stack	*a;
 	stack	*b;
 	stack	*operations;
 
 	operations = NULL;
-	args = parse_args(argc, argv, 0);
-	if (args == NULL)
+	a = parse_stack(1, argc, argv);
+	if (a == NULL)
 		return (ft_printf_err("Error\n"), -1);
 	b = NULL;
 	line = get_next_line(STDIN_FILENO);
 	while (line)
 	{
 		if (parse_operation(line, &operations) == -1)
-			return (free(line), free(operations), ft_printf_err("Error\n"), -1);
+			return (free(line), clear(operations), ft_printf_err("Error\n"), -1);
 		free(line);
 		line = get_next_line(STDIN_FILENO);
 	}
-	apply_operations(&args->stack, &b, operations);
-	if (is_sorted(args->stack) && (!b || ft_lstsize(b) == 0))
+	apply_operations(&a, &b, operations);
+	if (is_sorted(a) && (!b || ft_lstsize(b) == 0))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	return (clear(args->stack), free(args), free(b), clear(operations), 0);
+	return (clear(a), clear(b), clear(operations), 0);
 }

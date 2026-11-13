@@ -6,7 +6,7 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 06:07:29 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 06:45:53 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 06:57:58 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ float	compute_disorder(stack *s);
 int		is_number(char *s);
 int		is_strategy(char *arg);
 int		is_unique(stack *s, int number);
+stack	*parse_stack(int i, int argc, char **argv);
 
 #endif
