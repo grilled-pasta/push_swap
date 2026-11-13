@@ -13,7 +13,7 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 
-#include "common.h"
+# include "common.h"
 
 // parser
 int		parse_operation(char *s, t_stack **operations);
