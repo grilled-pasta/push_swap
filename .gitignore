@@ -1,9 +1,11 @@
 # Compiled executable
 push_swap
+checker
 
 # Object files
 *.o
 *.a
+*.d
 
 # checkers
 /checkers/
