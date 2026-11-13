@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:31:43 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/09 22:28:28 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/13 04:14:38 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		is_digit(char c);
 int		ft_atoi(const char *nptr);
 int		is_sorted(stack *s);
 // parser
-args	*parse_args(int argc, char **argv);
+args	*parse_args(int argc, char **argv, int has_flags);
 // operations
 void	swap_a(stack **a, stack **operations);
 void	swap_b(stack **b, stack **operations);

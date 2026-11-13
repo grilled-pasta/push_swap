@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 20:47:33 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/09 22:17:37 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/13 04:17:53 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,6 @@ void	sort(args *args, stack **operations)
 	clear(temp);
 }
 
-int	is_sorted(stack *s)
-{
-	int	prev;
-
-	if (!s)
-		return (1);
-	prev = s->number;
-	s = s->next;
-	while (s)
-	{
-		if (s->number < prev)
-			return (0);
-		prev = s->number;
-		s = s->next;
-	}
-	return (1);
-}
-
 int	main(int argc, char **argv)
 {
 	args	*args;
@@ -81,7 +63,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	args = parse_args(argc, argv);
+	args = parse_args(argc, argv, 1);
 	operations = NULL;
 	if (args == NULL)
 		return (ft_printf_err("Error\n"), -1);

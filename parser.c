@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:56:39 by alla              #+#    #+#             */
-/*   Updated: 2026/11/09 22:18:46 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/13 04:17:29 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	select_adaptive(args *args)
 		args->strategy = "complex";
 }
 
-args	*parse_args(int argc, char **argv)
+args	*parse_args(int argc, char **argv, int has_flags)
 {
 	args	*args_parsed;
 	stack	*s;
@@ -92,12 +92,12 @@ args	*parse_args(int argc, char **argv)
 		return (free(args_parsed), NULL);
 	args_parsed->adaptive = 1;
 	args_parsed->benchmark = 0;
-	if (ft_strcmp(argv[i], "--bench") == 0)
+	if (has_flags && ft_strcmp(argv[i], "--bench") == 0)
 	{
 		args_parsed->benchmark = 1;
 		i++;
 	}
-	if (i < argc && is_strategy(argv[i]))
+	if (has_flags && i < argc && is_strategy(argv[i]))
 	{
 		args_parsed->strategy = argv[i] + 2;
 		if (ft_strcmp(args_parsed->strategy, "adaptive") != 0)

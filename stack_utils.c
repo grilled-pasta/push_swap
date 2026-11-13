@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 04:54:06 by alla              #+#    #+#             */
-/*   Updated: 2026/11/09 22:30:58 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/13 03:58:28 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,20 @@ void	clear(stack *s)
 	free(s);
 }
 
+int	is_sorted(stack *s)
+{
+	int	prev;
+
+	if (!s)
+		return (1);
+	prev = s->number;
+	s = s->next;
+	while (s)
+	{
+		if (s->number < prev)
+			return (0);
+		prev = s->number;
+		s = s->next;
+	}
+	return (1);
+}

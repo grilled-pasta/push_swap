@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME = push_swap
+BONUS_NAME = checker
 
 PRINTF_DIR = libftprintf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
@@ -19,27 +20,35 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I. -I$(PRINTF_DIR)
 
+BONUS_SRCS = get_next_line/get_next_line.c \
+	     get_next_line/get_next_line_utils.c \
+	     checker.c
+
+COMMON_SRCS = stack.c \
+	      stack_utils.c \
+	      operations/push.c \
+	      operations/swap.c \
+	      operations/rotate.c \
+	      operations/reverse_rotate.c \
+	      utils.c \
+	      parser.c
+
+
 SRCS = push_swap.c \
-       stack.c \
-       stack_utils.c \
-       operations/push.c \
-       operations/swap.c \
-       operations/rotate.c \
-       operations/reverse_rotate.c \
        sorters/simple.c \
        sorters/medium.c \
        sorters/complex.c \
        sorters/sorter_utils.c \
-       parser.c \
-       utils.c \
        benchmark.c
 
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+COMMON_OBJS = $(COMMON_SRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(PRINTF)
-	$(CC) $(CFLAGS) $(OBJS) $(PRINTF) -o $(NAME)
+$(NAME): $(OBJS) $(COMMON_OBJS) $(PRINTF)
+	$(CC) $(CFLAGS) $^ -o $(NAME)
 
 %.o: %.c push_swap.h
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -47,12 +56,15 @@ $(NAME): $(OBJS) $(PRINTF)
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
+bonus: $(BONUS_OBJS) $(COMMON_OBJS) $(PRINTF)
+	$(CC) $(CFLAGS) $^ -o $(BONUS_NAME)
+
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(COMMON_OBJS) $(BONUS_OBJS)
 	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 	$(MAKE) -C $(PRINTF_DIR) fclean
 
 .PHONY: all clean fclean

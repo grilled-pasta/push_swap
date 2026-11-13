@@ -6,7 +6,7 @@
 /*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:39:59 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/09 22:18:04 by fsalinas         ###   ########.fr       */
+/*   Updated: 2026/11/13 04:08:09 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	add_back(stack **s, stack *s_new)
 {
 	stack	*last_s;
 
+	if (!s)
+		return ;
 	if (*s)
 	{
 		last_s = last(*s);
