@@ -6,16 +6,17 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 06:07:29 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 08:55:45 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 09:49:01 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include <stdlib.h>
-# include "common.h"
-# include "../libftprintf/ft_printf.h"
-# include "../src/checker/get_next_line/get_next_line.h"
+#include "common.h"
+
+// parser
+int		parse_operation(char *s, t_stack **operations);
+void	apply_operation(t_stack **a, t_stack **b, int number);
 
 #endif

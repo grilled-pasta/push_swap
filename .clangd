@@ -1,5 +1,9 @@
 CompileFlags:
   Add:
+    - -Wall
+    - -Wextra
+    - -Werror
     - -Iinclude
     - -Ilibftprintf
     - -Isrc/checker/get_next_line
+  Compiler: cc

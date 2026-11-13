@@ -22,7 +22,8 @@ PRINTF_DIR = libftprintf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror
+DEPFLAGS = -MMD -MP
 CPPFLAGS = -Iinclude -I$(PRINTF_DIR)
 BONUS_CPPFLAGS = -I$(CHECKER_DIR)/get_next_line
 
@@ -45,14 +46,16 @@ FILES = push_swap.c \
 	benchmark.c
 SRCS = $(addprefix $(PUSH_SWAP_DIR)/,$(FILES))
 
-BONUS_FILES = get_next_line/get_next_line.c \
-	      get_next_line/get_next_line_utils.c \
-	      checker.c
+BONUS_FILES = checker.c \
+	      parse_operation.c \
+	      get_next_line/get_next_line.c \
+	      get_next_line/get_next_line_utils.c
 BONUS_SRCS = $(addprefix $(CHECKER_DIR)/,$(BONUS_FILES))
 
 COMMON_OBJS = $(COMMON_SRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+$(BONUS_OBJS): CPPFLAGS += $(BONUS_CPPFLAGS)
 
 DEPS =	$(OBJS:.o=.d) \
 	$(COMMON_OBJS:.o=.d) \
@@ -71,7 +74,7 @@ $(BONUS_NAME): $(BONUS_OBJS) $(COMMON_OBJS) $(PRINTF)
 	$(CC) $(CFLAGS) $(BONUS_CPPFLAGS) $^ -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)

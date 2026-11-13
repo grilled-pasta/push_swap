@@ -6,16 +6,13 @@
 /*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 07:41:14 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 08:46:36 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/13 09:14:51 by alkonsta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
 
-#include <stdlib.h>
-
-// struct + stack + operations + parser?
 typedef enum e_operation
 {
 	sa,

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
+#include "common.h"
 
 static void	push(t_stack **s1, t_stack **s2)
 {
