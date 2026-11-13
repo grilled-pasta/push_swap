@@ -32,19 +32,19 @@ static int	reverse_rotate(t_stack **s)
 
 void	reverse_rotate_a(t_stack **a, t_stack **operations)
 {
-	if(reverse_rotate(a))
+	if (reverse_rotate(a))
 		add_operation(rra, operations);
 }
 
 void	reverse_rotate_b(t_stack **b, t_stack **operations)
 {
-	if(reverse_rotate(b))
+	if (reverse_rotate(b))
 		add_operation(rrb, operations);
 }
 
 void	reverse_rotate_ab(t_stack **a, t_stack **b, t_stack **operations)
 {
-	int rra_res;
+	int	rra_res;
 	int	rrb_res;
 
 	rra_res = reverse_rotate(a);

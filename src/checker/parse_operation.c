@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 #include "common.h"
 
 int	parse_operation(char *s, t_stack **operations)

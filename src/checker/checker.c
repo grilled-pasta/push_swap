@@ -15,6 +15,26 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 
+static t_stack	*parse_operations(void)
+{
+	char	*line;
+	t_stack	*operations;
+
+	operations = NULL;
+	line = get_next_line(STDIN_FILENO);
+	while (line)
+	{
+		if (line[ft_strlen(line) - 1] != '\n')
+			return (free(line), clear(operations), NULL);
+		line[ft_strlen(line) - 1] = '\0';
+		if (parse_operation(line, &operations) == -1)
+			return (free(line), clear(operations), NULL);
+		free(line);
+		line = get_next_line(STDIN_FILENO);
+	}
+	return (operations);
+}
+
 static void	apply_operations(t_stack **a, t_stack **b, t_stack *operations)
 {
 	while (operations)
@@ -26,29 +46,17 @@ static void	apply_operations(t_stack **a, t_stack **b, t_stack *operations)
 
 int	main(int argc, char **argv)
 {
-	char	*line;
 	t_stack	*a;
 	t_stack	*b;
 	t_stack	*operations;
 
-	operations = NULL;
 	a = parse_stack(1, argc, argv);
 	if (a == NULL)
 		return (ft_printf_err("Error\n"), -1);
 	b = NULL;
-	line = get_next_line(STDIN_FILENO);
-	while (line)
-	{
-		if (line[ft_strlen(line) - 1] != '\n')
-			return (free(line), clear(operations),
-				ft_printf_err("Error\n"), -1);
-		line[ft_strlen(line) - 1] = '\0';
-		if (parse_operation(line, &operations) == -1)
-			return (free(line), clear(operations),
-				ft_printf_err("Error\n"), -1);
-		free(line);
-		line = get_next_line(STDIN_FILENO);
-	}
+	operations = parse_operations();
+	if (operations == NULL)
+		return (clear(a), ft_printf_err("Error\n"), -1);
 	apply_operations(&a, &b, operations);
 	if (is_sorted(a) && (!b || ft_lstsize(b) == 0))
 		ft_printf("OK\n");
