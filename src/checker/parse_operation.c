@@ -24,7 +24,7 @@ static int	add_operation(t_operation operation, t_stack **operations)
 	return (0);
 }
 
-int		parse_operation(char *s, t_stack **operations)
+int	parse_operation(char *s, t_stack **operations)
 {
 	if (ft_strncmp(s, "sa", 2) == 0)
 		return (add_operation(sa, operations));

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdlib.h>
+#include <stdlib.h>
 #include "common.h"
 
 t_stack	*last(t_stack *s)
@@ -55,20 +55,13 @@ void	clear(t_stack *s)
 	free(s);
 }
 
-int	is_sorted(t_stack *s)
+int	is_sorted(t_stack *a)
 {
-	int	prev;
-
-	if (!s)
-		return (1);
-	prev = s->number;
-	s = s->next;
-	while (s)
+	while (a && a->next)
 	{
-		if (s->number < prev)
+		if (a->number > a->next->number)
 			return (0);
-		prev = s->number;
-		s = s->next;
+		a = a->next;
 	}
 	return (1);
 }

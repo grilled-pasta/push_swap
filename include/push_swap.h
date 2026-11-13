@@ -42,7 +42,6 @@ void	print_benchmark(t_args *t_args, t_stack *operations);
 // sorter_utils
 void	ft_ranking(t_stack **a);
 double	ft_sqrt(double n);
-int		ft_is_sorted(t_stack *a);
 int		ft_find_max(t_stack *b, int chunk_size);
 
 #endif

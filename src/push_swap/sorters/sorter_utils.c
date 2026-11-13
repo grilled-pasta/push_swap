@@ -55,18 +55,6 @@ double	ft_sqrt(double n)
 	return (x);
 }
 
-//This one goes in the function that decides what algorithm is better
-int	ft_is_sorted(t_stack *a)
-{
-	while (a && a->next)
-	{
-		if (a->number > a->next->number)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
 //checks each chunk and looks where is the max value located.
 int	ft_find_max(t_stack *b, int chunk_size)
 {
