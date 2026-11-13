@@ -74,10 +74,8 @@ int	main(int argc, char **argv)
 	if (!is_sorted(args->stack))
 	{
 		sort(args, &operations);
-		// if (args->benchmark)
-		// 	print_benchmark(args, operations);
 		iter(operations, put_operations);
-	}		
+	}
 	if (args->benchmark)
 		print_benchmark(args, operations);
 	return (clear(args->stack), free(args), clear(operations), 0);
