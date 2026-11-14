@@ -40,7 +40,7 @@ int	is_digit(char c)
 }
 
 long	handle_sign(const char **nptr)
-{	
+{
 	long	sign;
 
 	sign = 1;
