@@ -13,43 +13,35 @@
 NAME = push_swap
 BONUS_NAME = checker
 
-SRC_DIR = src
-COMMON_DIR = $(SRC_DIR)/common
-PUSH_SWAP_DIR = $(SRC_DIR)/push_swap
-CHECKER_DIR = $(SRC_DIR)/checker
-
 PRINTF_DIR = libftprintf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -Iinclude -I$(PRINTF_DIR)
-BONUS_CPPFLAGS = -I$(CHECKER_DIR)/get_next_line
+BONUS_CPPFLAGS = -Isrc/checker/get_next_line
 
-COMMON_FILES = stack.c \
-	       stack_utils.c \
-	       operations/push.c \
-	       operations/swap.c \
-	       operations/rotate.c \
-	       operations/reverse_rotate.c \
-	       utils.c \
-	       parse_stack.c
-COMMON_SRCS = $(addprefix $(COMMON_DIR)/,$(COMMON_FILES))
+COMMON_SRCS = src/common/stack.c \
+	       src/common/stack_utils.c \
+	       src/common/operations/push.c \
+	       src/common/operations/swap.c \
+	       src/common/operations/rotate.c \
+	       src/common/operations/reverse_rotate.c \
+	       src/common/utils.c \
+	       src/common/parse_stack.c
 
-FILES = push_swap.c \
-	parser.c \
-	sorters/simple.c \
-	sorters/medium.c \
-	sorters/complex.c \
-	sorters/sorter_utils.c \
-	benchmark.c
-SRCS = $(addprefix $(PUSH_SWAP_DIR)/,$(FILES))
+SRCS = src/push_swap/push_swap.c \
+	src/push_swap/parser.c \
+	src/push_swap/sorters/simple.c \
+	src/push_swap/sorters/medium.c \
+	src/push_swap/sorters/complex.c \
+	src/push_swap/sorters/sorter_utils.c \
+	src/push_swap/benchmark.c
 
-BONUS_FILES = checker.c \
-	      parse_operation.c \
-	      get_next_line/get_next_line.c \
-	      get_next_line/get_next_line_utils.c
-BONUS_SRCS = $(addprefix $(CHECKER_DIR)/,$(BONUS_FILES))
+BONUS_SRCS = src/checker/checker.c \
+	      src/checker/parse_operation.c \
+	      src/checker/get_next_line/get_next_line.c \
+	      src/checker/get_next_line/get_next_line_utils.c
 
 COMMON_OBJS = $(COMMON_SRCS:.c=.o)
 OBJS = $(SRCS:.c=.o)
@@ -59,7 +51,7 @@ $(BONUS_OBJS): CPPFLAGS += $(BONUS_CPPFLAGS)
 $(NAME): $(OBJS) $(COMMON_OBJS) $(PRINTF)
 	$(CC) $(CFLAGS) $^ -o $@
 
-all: $(NAME) $(BONUS_NAME)
+all: $(NAME)
 
 bonus: $(BONUS_NAME)
 

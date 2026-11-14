@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alkonsta <alkonsta@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: fsalinas <fsalinas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 08:31:53 by alkonsta          #+#    #+#             */
-/*   Updated: 2026/11/13 08:46:26 by alkonsta         ###   ########.fr       */
+/*   Updated: 2026/11/14 13:46:05 by fsalinas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "common.h"
 
 static int	is_number(char *s)
