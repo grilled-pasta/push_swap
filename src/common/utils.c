@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <limits.h>
 
 int	ft_strcmp(char *s1, char *s2)
@@ -38,28 +39,41 @@ int	is_digit(char c)
 	return (c >= '0' && c <= '9');
 }
 
-int	ft_atoi(const char *nptr)
-{
-	long	res;
+long	handle_sign(const char **nptr)
+{	
 	long	sign;
 
 	sign = 1;
-	if (ft_strcmp((char *) nptr, "-2147483648") == 0)
-		return (-2147483648);
-	if (*nptr == '-')
+	if (**nptr == '-')
 	{
-		if (*nptr == '-')
-			sign = -1;
-		nptr++;
+		sign = -1;
+		(*nptr)++;
 	}
+	else if (**nptr == '+')
+		(*nptr)++;
+	return (sign);
+}
+
+int	ft_atoi(const char *nptr, int *error)
+{
+	long	res;
+	long	sign;
+	long	limit;
+
+	limit = INT_MAX;
+	sign = handle_sign(&nptr);
+	if (sign == -1)
+		limit = ((long) INT_MIN) * -1;
 	res = 0;
+	while (*nptr == '0')
+		nptr++;
 	while (*nptr)
 	{
 		if (!is_digit(*nptr))
-			return (0);
+			return (*error = 1, 0);
+		if (res > (limit - (*nptr - '0')) / 10)
+			return (*error = 1, 0);
 		res = res * 10 + (*nptr - '0');
-		if ((sign == -1 && (res * sign) < INT_MIN) || res > INT_MAX)
-			return (0);
 		nptr++;
 	}
 	return (sign * res);

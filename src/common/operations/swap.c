@@ -36,7 +36,7 @@ void	swap_a(t_stack **a, t_stack **operations)
 void	swap_b(t_stack **b, t_stack **operations)
 {
 	if (swap(b))
-		add_operation(sa, operations);
+		add_operation(sb, operations);
 }
 
 void	swap_ab(t_stack **a, t_stack **b, t_stack **operations)

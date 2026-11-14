@@ -49,7 +49,7 @@ int		add_operation(t_operation operation, t_stack **operations);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
 int		is_digit(char c);
-int		ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr, int *error);
 // parser
 t_stack	*parse_stack(int i, int argc, char **argv);
 // operations

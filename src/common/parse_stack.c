@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "common.h"
 
 static int	is_number(char *s)
 {
 	if (!s || !*s)
 		return (0);
-	if (*s == '-')
+	if (*s == '-' || *s == '+')
 		s++;
 	while (*s)
 	{
@@ -44,15 +43,16 @@ t_stack	*parse_stack(int i, int argc, char **argv)
 	t_stack	*s;
 	t_stack	*temp_s;
 	int		temp_i;
+	int		error;
 
 	s = NULL;
+	error = 0;
 	while (i < argc)
 	{
 		if (!is_number(argv[i]))
 			return (clear(s), NULL);
-		temp_i = ft_atoi(argv[i]);
-		if ((temp_i == 0 && ft_strcmp(argv[i], "0") != 0)
-			|| !is_unique(s, temp_i))
+		temp_i = ft_atoi(argv[i], &error);
+		if (error || !is_unique(s, temp_i))
 			return (clear(s), NULL);
 		temp_s = new(temp_i);
 		if (!temp_s)

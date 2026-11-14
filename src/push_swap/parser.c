@@ -95,6 +95,7 @@ t_args	*parse_args(int argc, char **argv)
 		return (free(args), NULL);
 	args->adaptive = 1;
 	args->benchmark = 0;
+	args->strategy = NULL;
 	i = parse_flags(argc, argv, &args);
 	if (i == -1)
 		return (free(args), NULL);
